@@ -1,13 +1,14 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const AboutUs = () => {
   return (
 <>
     <Navbar />
     
-    <div className="bg-gradient-to-r from-blue-50 to-blue-100 min-h-screen flex flex-col items-center mt-5 py-16 px-6">
+    <div className="bg-gradient-to-r from-blue-50 to-blue-100 min-h-screen flex flex-col items-center mt-1 py-32 px-6">
     
       {/* Header */}
       <motion.h1
@@ -55,6 +56,7 @@ const AboutUs = () => {
         transition={{ duration: 1 }}
       />
     </div>
+    <Footer />
   </>
   );
 };

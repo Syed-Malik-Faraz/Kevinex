@@ -1,4 +1,10 @@
+import { Instagram, Linkedin, Twitter } from "lucide-react";
+import { useNavigate } from "react-router-dom"
+
 export default function Footer() {
+
+  const Navigate = useNavigate();
+
   return (
     <footer className="bg-gray-900 text-gray-300 pt-14 pb-8 mt-16">
       <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-10">
@@ -21,10 +27,28 @@ export default function Footer() {
         <div>
           <h3 className="text-white font-semibold mb-4 text-lg">Quick Links</h3>
           <ul className="space-y-2">
-            <li className="hover:text-white transition duration-300 cursor-pointer">Home</li>
-            <li className="hover:text-white transition duration-300 cursor-pointer">Products</li>
-            <li className="hover:text-white transition duration-300 cursor-pointer">About</li>
-            <li className="hover:text-white transition duration-300 cursor-pointer">Contact</li>
+<li className="hover:text-white transition duration-300 cursor-pointer">
+  <button onClick={() => Navigate("/home")}>
+    Home
+  </button>
+</li>
+<li className="hover:text-white transition duration-300 cursor-pointer">
+  <button onClick={() => Navigate("/products")}>
+    Products
+  </button>
+</li>
+<li className="hover:text-white transition duration-300 cursor-pointer">
+  <button onClick={() => Navigate("/about")}>
+    About Us
+  </button>
+</li>
+<li className="hover:text-white transition duration-300 cursor-pointer">
+  <button onClick={() => Navigate("/contact")}>
+    Contact
+  </button>
+</li>
+
+     
           </ul>
         </div>
 
@@ -48,10 +72,10 @@ export default function Footer() {
 
           {/* Social Icons */}
           <div className="flex gap-4 mt-4 text-xl">
-            <span className="hover:text-white transition duration-300 cursor-pointer">🌐</span>
-            <span className="hover:text-white transition duration-300 cursor-pointer">📘</span>
-            <span className="hover:text-white transition duration-300 cursor-pointer">📸</span>
-            <span className="hover:text-white transition duration-300 cursor-pointer">🐦</span>
+            <span className="hover:text-white transition duration-300 cursor-pointer"> <Linkedin /></span>
+            <span className="hover:text-white transition duration-300 cursor-pointer"><Instagram /></span>
+            <span className="hover:text-white transition duration-300 cursor-pointer"><Twitter /></span>
+            {/* <span className="hover:text-white transition duration-300 cursor-pointer">🐦</span> */}
           </div>
         </div>
       </div>

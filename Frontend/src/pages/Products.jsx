@@ -32,7 +32,7 @@ export default function Products() {
     <>
       <Navbar />
 
-<div className="pt-24 pb-10 min-h-screen bg-gradient-to-br from-[#6cb7c9] via-[#4fa3c0] to-[#2d7f9a] px-6">
+<div className="pt-24 pb-10 min-h-screen bg-[#deebfe] px-6">
         <div className="max-w-7xl mx-auto">
           <h1 className="text-3xl font-bold mb-8">All Products</h1>
 

@@ -13,11 +13,11 @@ const getProducts = async (req, res) => {
 
   const keyword = req.query.keyword
     ? {
-        name: {
-          $regex: req.query.keyword,
-          $options: "i",
-        },
-      }
+      name: {
+        $regex: req.query.keyword,
+        $options: "i",
+      },
+    }
     : {};
 
   const count = await Product.countDocuments({ ...keyword });
@@ -54,16 +54,18 @@ const getProductById = async (req, res) => {
 
 // CREATE product (Admin)
 const createProduct = async (req, res) => {
+  const { name, price, image, brand, category, countInStock, description } = req.body;
+
   const product = new Product({
+    name,
+    price,
     user: req.user._id,
-    name: "Sample Product",
-    price: 0,
-    image: "/images/sample.jpg",
-    brand: "Sample Brand",
-    category: "Sample Category",
-    countInStock: 0,
+    image,
+    brand,
+    category,
+    countInStock,
     numReviews: 0,
-    description: "Sample description"
+    description,
   });
 
   const createdProduct = await product.save();
@@ -143,6 +145,6 @@ module.exports = {
   getProducts,
   getProductById,
   createProduct,
-    updateProduct,
-    deleteProduct
+  updateProduct,
+  deleteProduct
 };

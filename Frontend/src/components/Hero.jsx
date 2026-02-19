@@ -1,8 +1,9 @@
 // src/components/Hero.jsx
 import { motion } from "framer-motion";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Hero() {
+  const navigate = useNavigate();
   return (
     <section
       className="relative bg-cover bg-center h-screen flex flex-col justify-center items-center text-center px-6"
@@ -13,7 +14,7 @@ export default function Hero() {
 
       {/* Content */}
       <div className="relative z-10 max-w-3xl">
-        
+
         {/* Animated Heading */}
         <motion.h1
           initial={{ opacity: 0, y: -40 }}
@@ -33,7 +34,7 @@ export default function Hero() {
           transition={{ duration: 1 }}
           className="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed"
         >
-          This January we’re teaming up with wellness brands 
+          This January we’re teaming up with wellness brands
           to help you do more with less.
         </motion.p>
 
@@ -44,16 +45,14 @@ export default function Hero() {
           transition={{ duration: 1.2 }}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
+          onClick={() => navigate("/products")}
           className="px-8 py-3 rounded-full font-semibold text-white 
                      bg-gradient-to-r from-blue-600 to-purple-600 
                      shadow-lg shadow-blue-500/40
                      hover:shadow-purple-500/50
                      transition-all duration-300"
         >
-          <button onClick={() => Navigate("/products")}>
           Learn More
-           </button>
-         
         </motion.button>
       </div>
     </section>
