@@ -68,7 +68,7 @@ export default function Footer() {
           <h3 className="text-white font-semibold mb-4 text-lg">Contact</h3>
           <p className="text-sm mb-2">📍 India</p>
           <p className="text-sm mb-2">📧 support@kevinnex.com</p>
-          <p className="text-sm">📞 +91 98765 43210</p>
+          <p className="text-sm">📞 +91 01234 56789</p>
 
           {/* Social Icons */}
           <div className="flex gap-4 mt-4 text-xl">

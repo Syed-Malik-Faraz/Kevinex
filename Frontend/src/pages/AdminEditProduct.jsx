@@ -14,6 +14,7 @@ export default function AdminEditProduct() {
     const [category, setCategory] = useState("");
     const [countInStock, setCountInStock] = useState("");
     const [image, setImage] = useState("");
+    const [isFeatured, setIsFeatured] = useState(false);
     const [uploading, setUploading] = useState(false);
     const [loading, setLoading] = useState(true);
 
@@ -38,6 +39,7 @@ export default function AdminEditProduct() {
                 setCategory(product.category);
                 setCountInStock(product.countInStock);
                 setImage(product.image);
+                setIsFeatured(product.isFeatured);
                 setLoading(false);
             } catch (error) {
                 console.error("Error fetching product:", error);
@@ -89,6 +91,7 @@ export default function AdminEditProduct() {
                     category,
                     countInStock,
                     image,
+                    isFeatured,
                 },
                 config
             );
@@ -184,6 +187,19 @@ export default function AdminEditProduct() {
                                 readOnly
                             />
                             <input type="file" className="mt-2 w-full" onChange={uploadFileHandler} />
+                        </div>
+
+                        <div className="flex items-center gap-2 py-4">
+                            <input
+                                type="checkbox"
+                                id="isFeatured"
+                                className="w-5 h-5 accent-indigo-600"
+                                checked={isFeatured}
+                                onChange={(e) => setIsFeatured(e.target.checked)}
+                            />
+                            <label htmlFor="isFeatured" className="text-sm font-bold text-gray-700 cursor-pointer">
+                                Feature this product on Home Page
+                            </label>
                         </div>
 
                         {uploading && <p className="text-blue-500">Uploading image...</p>}

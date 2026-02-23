@@ -1,7 +1,7 @@
-const express = require("express");
+import express from "express";
 const router = express.Router();
-const upload = require("../middleware/uploadMiddleware");
-const { protect, admin } = require("../middleware/authMiddleware");
+import upload from "../middleware/uploadMiddleware.js";
+import { protect, admin } from "../middleware/authMiddleware.js";
 router.post("/", protect, admin, upload.single("image"), (req, res) => {
   res.send({
     message: "Image uploaded successfully",
@@ -9,4 +9,4 @@ router.post("/", protect, admin, upload.single("image"), (req, res) => {
   });
 });
 
-module.exports = router;
+export default router;

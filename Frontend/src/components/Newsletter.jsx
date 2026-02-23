@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
+import { Mail, Phone, MapPin, Send } from "lucide-react";
 
 export default function Newsletter() {
   const [formData, setFormData] = useState({
@@ -18,82 +20,121 @@ export default function Newsletter() {
   };
 
   return (
-    <section className="relative py-20 px-6 overflow-hidden">
-      
-      {/* Background Gradient */}
-      <div className="absolute inset-0 "></div>
+    <section className="py-24 px-6 bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto">
+        <div className="bg-gray-900 rounded-[3rem] overflow-hidden relative shadow-2xl">
+          {/* Decorative gradients */}
+          <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-indigo-600/20 blur-[100px] -mr-32 -mt-32"></div>
+          <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-purple-600/20 blur-[100px] -ml-20 -mb-20"></div>
 
-      <div className="relative max-w-6xl bg-gradient-to-r from-blue-600 to-purple-600 opacity-70 animate-gradient mx-auto bg-white/10 backdrop-blur-lg border border-white/20 rounded-3xl shadow-2xl p-10 md:p-16">
+          <div className="relative z-10 grid lg:grid-cols-2">
 
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+            {/* Contact Info (Dark Side) */}
+            <div className="p-10 md:p-20 text-white flex flex-col justify-center">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+              >
+                <h2 className="text-4xl md:text-5xl font-extrabold mb-8">
+                  Get in touch
+                </h2>
+                <p className="text-gray-400 text-lg mb-12 max-w-md leading-relaxed">
+                  Have questions or want to learn more about our philosophy? Send us a message and we'll get back to you shortly.
+                </p>
 
-          {/* Left Side - Contact Info */}
-          <div className="text-white space-y-6">
-            <h2 className="text-4xl font-bold tracking-wide">
-              Get In Touch
-            </h2>
+                <div className="space-y-8">
+                  <div className="flex items-center gap-6 group">
+                    <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-indigo-600 transition duration-300">
+                      <Mail className="w-6 h-6 text-indigo-400 group-hover:text-white" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Email us</p>
+                      <p className="text-lg font-semibold">support@kevinnex.com</p>
+                    </div>
+                  </div>
 
-            <p className="text-white/80 text-lg">
-              Have questions or want to work with us?  
-              Send us a message and we’ll respond as soon as possible.
-            </p>
+                  <div className="flex items-center gap-6 group">
+                    <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-indigo-600 transition duration-300">
+                      <Phone className="w-6 h-6 text-indigo-400 group-hover:text-white" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Call us</p>
+                      <p className="text-lg font-semibold">+91 01234 56789</p>
+                    </div>
+                  </div>
 
-            <div className="space-y-3 text-white/90">
-              <p className="flex items-center gap-2">
-                📧 support@yourcompany.com
-              </p>
-              <p className="flex items-center gap-2">
-                📞 +91 98765 43210
-              </p>
-              <p className="flex items-center gap-2">
-                📍 India
-              </p>
+                  <div className="flex items-center gap-6 group">
+                    <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-indigo-600 transition duration-300">
+                      <MapPin className="w-6 h-6 text-indigo-400 group-hover:text-white" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Visit us</p>
+                      <p className="text-lg font-semibold">New Delhi, India</p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
             </div>
+
+            {/* Contact Form (Light/Integrated Side) */}
+            <div className="bg-white/5 lg:bg-white/5 border-t lg:border-t-0 lg:border-l border-white/10 p-10 md:p-20">
+              <motion.form
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                onSubmit={handleSubmit}
+                className="space-y-6"
+              >
+                <div>
+                  <label className="block text-sm font-bold text-gray-400 mb-2 ml-1">Full Name</label>
+                  <input
+                    type="text"
+                    name="name"
+                    required
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder="Enter your name"
+                    className="w-full px-6 py-4 rounded-2xl bg-white/5 border border-white/10 text-white placeholder:text-gray-600 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition duration-300"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-bold text-gray-400 mb-2 ml-1">Email Address</label>
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="Enter your email"
+                    className="w-full px-6 py-4 rounded-2xl bg-white/5 border border-white/10 text-white placeholder:text-gray-600 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition duration-300"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-bold text-gray-400 mb-2 ml-1">Message</label>
+                  <textarea
+                    name="message"
+                    required
+                    rows="4"
+                    value={formData.message}
+                    onChange={handleChange}
+                    placeholder="How can we help?"
+                    className="w-full px-6 py-4 rounded-2xl bg-white/5 border border-white/10 text-white placeholder:text-gray-600 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition duration-300 resize-none"
+                  ></textarea>
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full py-5 rounded-2xl bg-indigo-600 text-white font-bold text-lg shadow-xl shadow-indigo-600/20 hover:bg-indigo-700 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-3"
+                >
+                  Send Message <Send className="w-5 h-5" />
+                </button>
+              </motion.form>
+            </div>
+
           </div>
-
-          {/* Right Side - Contact Form */}
-          <form
-            onSubmit={handleSubmit}
-            className="space-y-6"
-          >
-            <input
-              type="text"
-              name="name"
-              placeholder="Your Name"
-              required
-              value={formData.name}
-              onChange={handleChange}
-              className="w-full px-5 py-3 rounded-xl bg-white/80 text-gray-800 focus:outline-none focus:ring-4 focus:ring-blue-300 transition duration-300"
-            />
-
-            <input
-              type="email"
-              name="email"
-              placeholder="Your Email"
-              required
-              value={formData.email}
-              onChange={handleChange}
-              className="w-full px-5 py-3 rounded-xl bg-white/80 text-gray-800 focus:outline-none focus:ring-4 focus:ring-blue-300 transition duration-300"
-            />
-
-            <textarea
-              name="message"
-              rows="4"
-              placeholder="Your Message"
-              required
-              value={formData.message}
-              onChange={handleChange}
-              className="w-full px-5 py-3 rounded-xl bg-white/80 text-gray-800 focus:outline-none focus:ring-4 focus:ring-blue-300 transition duration-300 resize-none"
-            ></textarea>
-
-            <button
-              type="submit"
-              className="w-full py-3 rounded-xl bg-white text-blue-600 font-semibold shadow-lg hover:bg-blue-600 hover:text-white transition-all duration-300 hover:scale-105"
-            >
-              Send Message
-            </button>
-          </form>
-
         </div>
       </div>
     </section>

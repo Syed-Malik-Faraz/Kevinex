@@ -10,6 +10,7 @@ import AdminProductList from './pages/AdminProductList'
 import AdminEditProduct from './pages/AdminEditProduct'
 import AdminOrderDetails from './pages/AdminOrderDetails'
 import AdminUserList from './pages/AdminUserList'
+import MyOrders from './pages/MyOrders'
 import SingleProduct from "./pages/SingleProduct";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
@@ -43,6 +44,7 @@ const App = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/my-orders" element={<MyOrders />} />
         <Route path='/About' element={<AboutUs />} />
 
         <Route path='/contact' element={<Contact />} />

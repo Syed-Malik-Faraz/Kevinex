@@ -54,6 +54,12 @@ export default function Navbar() {
 
           {userInfo ? (
             <div className="flex items-center space-x-4 ml-4 pl-4 border-l border-gray-200">
+              <NavLink
+                to="/my-orders"
+                className="text-gray-700 hover:text-indigo-600 transition"
+              >
+                My Orders
+              </NavLink>
               {userInfo.isAdmin && (
                 <NavLink
                   to="/admin/dashboard"
@@ -121,6 +127,13 @@ export default function Navbar() {
 
           {userInfo ? (
             <>
+              <NavLink
+                to="/my-orders"
+                onClick={() => setIsOpen(false)}
+                className="text-gray-700"
+              >
+                My Orders
+              </NavLink>
               {userInfo.isAdmin && (
                 <NavLink
                   to="/admin/dashboard"

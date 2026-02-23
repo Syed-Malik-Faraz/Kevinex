@@ -10,6 +10,7 @@ export default function AdminAddProduct() {
   const [category, setCategory] = useState("");
   const [countInStock, setCountInStock] = useState("");
   const [image, setImage] = useState("");
+  const [isFeatured, setIsFeatured] = useState(false);
   const [uploading, setUploading] = useState(false);
 
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
@@ -62,6 +63,7 @@ export default function AdminAddProduct() {
           category,
           countInStock,
           image,
+          isFeatured,
         },
         config
       );
@@ -138,6 +140,19 @@ export default function AdminAddProduct() {
 
             {uploading && <p>Uploading...</p>}
             {image && <p className="text-green-500 text-sm">Image uploaded!</p>}
+
+            <div className="flex items-center gap-2 py-2">
+              <input
+                type="checkbox"
+                id="isFeatured"
+                className="w-5 h-5 accent-indigo-600"
+                checked={isFeatured}
+                onChange={(e) => setIsFeatured(e.target.checked)}
+              />
+              <label htmlFor="isFeatured" className="text-sm font-bold text-gray-700 cursor-pointer">
+                Feature this product on Home Page
+              </label>
+            </div>
 
             <button className="bg-blue-600 text-white px-4 py-2 rounded w-full hover:bg-blue-700 transition">
               Add Product

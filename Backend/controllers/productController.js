@@ -1,4 +1,10 @@
-const Product = require("../models/productModel");
+import Product from "../models/productModel.js";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // // GET all products
 // const getProducts = async (req, res) => {
@@ -8,7 +14,7 @@ const Product = require("../models/productModel");
 
 
 const getProducts = async (req, res) => {
-  const pageSize = 5; // products per page
+  const pageSize = 8; // products per page
   const page = Number(req.query.pageNumber) || 1;
 
   const keyword = req.query.keyword
@@ -20,11 +26,27 @@ const getProducts = async (req, res) => {
     }
     : {};
 
-  const count = await Product.countDocuments({ ...keyword });
+  const category = req.query.category ? { category: req.query.category } : {};
 
-  const products = await Product.find({ ...keyword })
+  const minPrice = req.query.minPrice ? { price: { $gte: Number(req.query.minPrice) } } : {};
+  const maxPrice = req.query.maxPrice ? { price: { $lte: Number(req.query.maxPrice) } } : {};
+
+  // Combine price filters if both exist
+  let priceFilter = {};
+  if (req.query.minPrice || req.query.maxPrice) {
+    priceFilter.price = {};
+    if (req.query.minPrice) priceFilter.price.$gte = Number(req.query.minPrice);
+    if (req.query.maxPrice) priceFilter.price.$lte = Number(req.query.maxPrice);
+  }
+
+  const query = { ...keyword, ...category, ...priceFilter };
+
+  const count = await Product.countDocuments(query);
+
+  const products = await Product.find(query)
     .limit(pageSize)
-    .skip(pageSize * (page - 1));
+    .skip(pageSize * (page - 1))
+    .sort({ createdAt: -1 });
 
   res.json({
     products,
@@ -115,8 +137,7 @@ const updateProduct = async (req, res) => {
 //   }
 // };
 
-const fs = require("fs");
-const path = require("path");
+// fs and path imported at top
 
 const deleteProduct = async (req, res) => {
   const product = await Product.findById(req.params.id);
@@ -141,9 +162,19 @@ const deleteProduct = async (req, res) => {
 
 
 
-module.exports = {
+const getCategories = async (req, res) => {
+  try {
+    const categories = await Product.distinct("category");
+    res.json(categories);
+  } catch (error) {
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+export {
   getProducts,
   getProductById,
+  getCategories,
   createProduct,
   updateProduct,
   deleteProduct

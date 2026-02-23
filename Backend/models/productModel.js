@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const reviewSchema = mongoose.Schema({
   user: {
@@ -26,7 +26,9 @@ const productSchema = mongoose.Schema({
   rating: { type: Number, default: 0 },
   numReviews: { type: Number, default: 0 },
   price: { type: Number, required: true },
-  countInStock: { type: Number, required: true }
+  countInStock: { type: Number, required: true },
+  isFeatured: { type: Boolean, default: false }
 }, { timestamps: true });
 
-module.exports = mongoose.model("Product", productSchema);
+const Product = mongoose.model("Product", productSchema);
+export default Product;
