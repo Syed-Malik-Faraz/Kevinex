@@ -31,7 +31,7 @@ export default function Navbar() {
           className="text-2xl font-bold tracking-wide bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent"
           style={{ fontFamily: "'Great Vibes', cursive" }}
         >
-          Kevinnex
+          Kevinex
         </NavLink>
 
         {/* Desktop Menu */}

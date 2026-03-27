@@ -220,7 +220,7 @@ export default function Cart() {
                   >
                     Proceed to Checkout
                   </button>
-                  <p className="text-center text-xs text-gray-400 mt-4 leading-relaxed">Secure checkout powered by Kevinnex Payments</p>
+                  <p className="text-center text-xs text-gray-400 mt-4 leading-relaxed">Secure checkout powered by Kevinex Payments</p>
                 </div>
               </div>
             </div>

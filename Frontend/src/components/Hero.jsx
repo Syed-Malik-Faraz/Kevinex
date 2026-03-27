@@ -82,7 +82,7 @@ export default function Hero() {
           <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-8 border-white">
             <img
               src="/heroimage.jpg"
-              alt="Kevinnex Premium Product"
+              alt="Kevinex Premium Product"
               className="w-full h-auto object-cover"
             />
           </div>

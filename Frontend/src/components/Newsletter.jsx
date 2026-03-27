@@ -50,7 +50,7 @@ export default function Newsletter() {
                     </div>
                     <div>
                       <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Email us</p>
-                      <p className="text-lg font-semibold">support@kevinnex.com</p>
+                      <p className="text-lg font-semibold">support@kevinex.com</p>
                     </div>
                   </div>
 

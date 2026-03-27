@@ -15,7 +15,7 @@ export default function Footer() {
             className="text-4xl text-white mb-4"
             style={{ fontFamily: "'Great Vibes', cursive" }}
           >
-            Kevinnex
+            Kevinex
           </h2>
           <p className="text-gray-400 text-sm leading-relaxed">
             Delivering quality household and lifestyle products across India.
@@ -67,7 +67,7 @@ export default function Footer() {
         <div>
           <h3 className="text-white font-semibold mb-4 text-lg">Contact</h3>
           <p className="text-sm mb-2">📍 India</p>
-          <p className="text-sm mb-2">📧 support@kevinnex.com</p>
+          <p className="text-sm mb-2">📧 support@kevinex.com</p>
           <p className="text-sm">📞 +91 01234 56789</p>
 
           {/* Social Icons */}
@@ -82,7 +82,7 @@ export default function Footer() {
 
       {/* Divider */}
       <div className="border-t border-gray-700 mt-10 pt-6 text-center text-sm text-gray-500">
-        © {new Date().getFullYear()} Kevinnex. All rights reserved.
+        © {new Date().getFullYear()} Kevinex. All rights reserved.
       </div>
     </footer>
   );

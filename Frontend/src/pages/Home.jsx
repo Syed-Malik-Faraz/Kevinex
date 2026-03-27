@@ -75,7 +75,7 @@ export default function Home() {
                 viewport={{ once: true }}
                 className="text-indigo-600 font-bold tracking-widest uppercase text-sm"
               >
-                Why Kevinnex?
+                Why Kevinex?
               </motion.span>
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}

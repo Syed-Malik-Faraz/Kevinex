@@ -45,7 +45,7 @@ export default function Contact() {
 
              <div className="space-y-4 text-gray-500">
               <p>📍 India</p>
-              <p>📧 support@kevinnex.com</p>
+              <p>📧 support@kevinex.com</p>
               <p>📞 +91 98765 43210</p>
               {/* <p>🕒 Mon - Sat : 9AM - 6PM</p> */}
             </div> 

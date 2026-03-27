@@ -77,7 +77,7 @@ export default function AdminDashboard() {
                             Total Revenue
                         </h2>
                         <p className="text-3xl font-bold text-green-600">
-                            ${stats.totalRevenue.toFixed(2)}
+                            ₹{stats.totalRevenue.toFixed(2)}
                         </p>
                     </div>
                     <div className="bg-white p-6 shadow rounded-lg border-l-4 border-blue-500">
@@ -137,7 +137,7 @@ export default function AdminDashboard() {
                                         <td className="p-4">
                                             {new Date(order.createdAt).toLocaleDateString()}
                                         </td>
-                                        <td className="p-4 font-semibold">${order.totalPrice.toFixed(2)}</td>
+                                        <td className="p-4 font-semibold">₹{order.totalPrice.toFixed(2)}</td>
                                         <td className="p-4">
                                             {order.isPaid ? (
                                                 <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">
