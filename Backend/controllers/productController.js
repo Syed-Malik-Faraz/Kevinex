@@ -1,4 +1,5 @@
 import Product from "../models/productModel.js";
+import Order from "../models/orderModel.js";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -171,11 +172,80 @@ const getCategories = async (req, res) => {
   }
 };
 
+// @desc    Create new review
+// @route   POST /api/products/:id/reviews
+// @access  Private
+const createProductReview = async (req, res) => {
+  const { rating, comment } = req.body;
+
+  const product = await Product.findById(req.params.id);
+
+  if (product) {
+    const alreadyReviewed = product.reviews.find(
+      (r) => r.user.toString() === req.user._id.toString()
+    );
+
+    if (alreadyReviewed) {
+      return res.status(400).json({ message: "Product already reviewed" });
+    }
+
+    // Check if user has purchased the product
+    const orders = await Order.find({ user: req.user._id });
+    const hasPurchased = orders.some((order) =>
+      order.orderItems.some((item) => item.product.toString() === product._id.toString())
+    );
+
+    if (!hasPurchased) {
+      return res.status(400).json({ message: "You must purchase the product before reviewing it" });
+    }
+
+    const review = {
+      name: req.user.name,
+      rating: Number(rating),
+      comment,
+      user: req.user._id,
+    };
+
+    product.reviews.push(review);
+    product.numReviews = product.reviews.length;
+    product.rating =
+      product.reviews.reduce((acc, item) => item.rating + acc, 0) /
+      product.reviews.length;
+
+    await product.save();
+    res.status(201).json({ message: "Review added" });
+  } else {
+    res.status(404).json({ message: "Product not found" });
+  }
+};
+
+// @desc    Get related products
+// @route   GET /api/products/:id/related
+// @access  Public
+const getRelatedProducts = async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.id);
+    if (product) {
+      const relatedProducts = await Product.find({
+        category: product.category,
+        _id: { $ne: product._id },
+      }).limit(4);
+      res.json(relatedProducts);
+    } else {
+      res.status(404).json({ message: "Product not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
 export {
   getProducts,
   getProductById,
   getCategories,
   createProduct,
   updateProduct,
-  deleteProduct
+  deleteProduct,
+  createProductReview,
+  getRelatedProducts
 };

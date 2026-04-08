@@ -6,6 +6,7 @@ import AdminNavbar from "../components/AdminNavbar";
 export default function AdminDashboard() {
     const [orders, setOrders] = useState([]);
     const [stats, setStats] = useState({ totalRevenue: 0, orderCount: 0 });
+    const [messageCount, setMessageCount] = useState(0);
     const [loading, setLoading] = useState(true);
     const [page, setPage] = useState(1);
     const [pages, setPages] = useState(1);
@@ -32,6 +33,14 @@ export default function AdminDashboard() {
             setOrders(ordersData.orders || ordersData);
             setPage(ordersData.page || 1);
             setPages(ordersData.pages || 1);
+
+            const { data: messageData } = await axios.get(
+                "http://localhost:5000/api/messages",
+                config
+            );
+            const unreadCount = messageData.filter(m => !m.isRead).length;
+            setMessageCount(unreadCount);
+
             setLoading(false);
         } catch (error) {
             console.error("Error fetching admin data:", error);
@@ -86,24 +95,22 @@ export default function AdminDashboard() {
                         </h2>
                         <p className="text-3xl font-bold text-blue-600">{stats.orderCount}</p>
                     </div>
-                    <div className="bg-white p-6 shadow rounded-lg border-l-4 border-purple-500 flex flex-col justify-between">
+                    <div className="bg-white p-6 shadow rounded-lg border-l-4 border-orange-500 relative overflow-hidden group">
                         <h2 className="text-gray-500 text-sm uppercase font-semibold">
-                            Product Actions
+                            Pending Inquiries
                         </h2>
-                        <div className="flex space-x-2 mt-4">
-                            <button
-                                onClick={() => window.location.href = "/admin/product-list"}
-                                className="text-xs bg-purple-100 text-purple-700 px-3 py-1 rounded hover:bg-purple-200 transition"
+                        <div className="flex items-center justify-between mt-1">
+                            <p className="text-3xl font-bold text-orange-600">{messageCount}</p>
+                            <NavLink 
+                                to="/admin/messages" 
+                                className="text-xs bg-orange-100 text-orange-700 px-3 py-1.5 rounded-lg hover:bg-orange-600 hover:text-white transition-all font-bold"
                             >
-                                Manage Products
-                            </button>
-                            <button
-                                onClick={() => window.location.href = "/admin/add-product"}
-                                className="text-xs bg-purple-600 text-white px-3 py-1 rounded hover:bg-purple-700 transition"
-                            >
-                                Add New
-                            </button>
+                                View Inbox
+                            </NavLink>
                         </div>
+                        {messageCount > 0 && (
+                            <div className="absolute -top-2 -right-2 w-12 h-12 bg-orange-100/50 rounded-full group-hover:scale-150 transition-transform duration-700"></div>
+                        )}
                     </div>
                 </div>
 
