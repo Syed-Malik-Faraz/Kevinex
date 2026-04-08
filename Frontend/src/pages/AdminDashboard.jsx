@@ -10,6 +10,7 @@ export default function AdminDashboard() {
     const [loading, setLoading] = useState(true);
     const [page, setPage] = useState(1);
     const [pages, setPages] = useState(1);
+    const API = import.meta.env.VITE_API_URL;
 
     const userInfo = JSON.parse(localStorage.getItem("userInfo"));
     const config = {
@@ -21,13 +22,13 @@ export default function AdminDashboard() {
     const fetchData = async (pageNumber = 1) => {
         try {
             const { data: revenueData } = await axios.get(
-                "http://localhost:5000/api/orders/revenue",
+                `${API}/api/orders/revenue`,
                 config
             );
             setStats(revenueData);
 
             const { data: ordersData } = await axios.get(
-                `http://localhost:5000/api/orders?pageNumber=${pageNumber}`,
+                `${API}/api/orders?pageNumber=${pageNumber}`,
                 config
             );
             setOrders(ordersData.orders || ordersData);
@@ -35,7 +36,7 @@ export default function AdminDashboard() {
             setPages(ordersData.pages || 1);
 
             const { data: messageData } = await axios.get(
-                "http://localhost:5000/api/messages",
+                `${API}/api/messages`,
                 config
             );
             const unreadCount = messageData.filter(m => !m.isRead).length;
@@ -54,7 +55,7 @@ export default function AdminDashboard() {
 
     const deliverHandler = async (id) => {
         try {
-            await axios.put(`http://localhost:5000/api/orders/${id}/deliver`, {}, config);
+            await axios.put(`${API}/api/orders/${id}/deliver`, {}, config);
             fetchData();
         } catch (error) {
             alert(error.response?.data?.message || error.message);
@@ -63,7 +64,7 @@ export default function AdminDashboard() {
 
     const payHandler = async (id) => {
         try {
-            await axios.put(`http://localhost:5000/api/orders/${id}/pay`, {}, config);
+            await axios.put(`${API}/api/orders/${id}/pay`, {}, config);
             fetchData();
         } catch (error) {
             alert(error.response?.data?.message || error.message);

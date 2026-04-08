@@ -10,6 +10,7 @@ export default function Checkout() {
   const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(false);
+  const API = import.meta.env.VITE_API_URL;
   const [shippingAddress, setShippingAddress] = useState({
     address: "",
     city: "",
@@ -81,7 +82,7 @@ export default function Checkout() {
       };
 
       await axios.post(
-        "http://localhost:5000/api/orders",
+        `${API}/api/orders`,
         orderData,
         config
       );
@@ -243,7 +244,7 @@ export default function Checkout() {
                 {cartItems.map((item) => (
                   <div key={item._id} className="flex gap-4">
                     <img 
-                      src={`http://localhost:5000${item.image}`} 
+                      src={`${API}${item.image}`} 
                       alt={item.name} 
                       className="w-16 h-16 object-cover rounded-xl bg-gray-50"
                     />

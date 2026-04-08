@@ -18,6 +18,7 @@ import ProductCard from "../components/ProductCard";
 export default function SingleProduct() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const API = import.meta.env.VITE_API_URL;
 
   const [product, setProduct] = useState(null);
   const [relatedProducts, setRelatedProducts] = useState([]);
@@ -37,11 +38,11 @@ export default function SingleProduct() {
     const fetchProductData = async () => {
       try {
         setLoading(true);
-        const { data } = await axios.get(`http://localhost:5000/api/products/${id}`);
+        const { data } = await axios.get(`${API}/api/products/${id}`);
         setProduct(data.product);
 
         // Fetch related products
-        const { data: relatedData } = await axios.get(`http://localhost:5000/api/products/${id}/related`);
+        const { data: relatedData } = await axios.get(`${API}/api/products/${id}/related`);
         setRelatedProducts(relatedData);
 
         setError("");
@@ -94,7 +95,7 @@ export default function SingleProduct() {
       };
 
       await axios.post(
-        `http://localhost:5000/api/products/${id}/reviews`,
+        `${API}/api/products/${id}/reviews`,
         { rating, comment },
         config
       );
@@ -104,7 +105,7 @@ export default function SingleProduct() {
       setComment("");
       
       // Refresh product to show new review
-      const { data } = await axios.get(`http://localhost:5000/api/products/${id}`);
+      const { data } = await axios.get(`${API}/api/products/${id}`);
       setProduct(data.product);
     } catch (err) {
       setReviewMessage(err.response?.data?.message || "Failed to submit review");
@@ -169,7 +170,7 @@ export default function SingleProduct() {
                 <div className="aspect-square rounded-3xl overflow-hidden bg-gray-50 flex items-center justify-center p-8 transition-all duration-700 hover:shadow-2xl">
                   <motion.img
                     layoutId={`product-${product._id}`}
-                    src={`http://localhost:5000${product.image}`}
+                    src={`${API}${product.image}`}
                     alt={product.name}
                     className="max-h-full max-w-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-700"
                   />

@@ -9,6 +9,7 @@ export default function AdminProductList() {
     const [loading, setLoading] = useState(true);
     const [page, setPage] = useState(1);
     const [pages, setPages] = useState(1);
+    const API = import.meta.env.VITE_API_URL;
 
     const userInfo = JSON.parse(localStorage.getItem("userInfo"));
     const config = {
@@ -19,7 +20,7 @@ export default function AdminProductList() {
 
     const fetchProducts = async (pageNumber = 1) => {
         try {
-            const { data } = await axios.get(`http://localhost:5000/api/products?pageNumber=${pageNumber}`);
+            const { data } = await axios.get(`${API}/api/products?pageNumber=${pageNumber}`);
             setProducts(data.products || data);
             setPage(data.page || 1);
             setPages(data.pages || 1);
@@ -37,7 +38,7 @@ export default function AdminProductList() {
     const deleteHandler = async (id) => {
         if (window.confirm("Are you sure you want to delete this product?")) {
             try {
-                await axios.delete(`http://localhost:5000/api/products/${id}`, config);
+                await axios.delete(`${API}/api/products/${id}`, config);
                 fetchProducts(page); // Refresh list
                 alert("Product deleted!");
             } catch (error) {

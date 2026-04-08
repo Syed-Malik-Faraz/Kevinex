@@ -9,6 +9,7 @@ export default function AdminOrderDetails() {
     const navigate = useNavigate();
     const [order, setOrder] = useState(null);
     const [loading, setLoading] = useState(true);
+    const API = import.meta.env.VITE_API_URL;
 
     const userInfo = JSON.parse(localStorage.getItem("userInfo"));
     const config = {
@@ -20,7 +21,7 @@ export default function AdminOrderDetails() {
     const fetchOrder = async () => {
         try {
             const { data } = await axios.get(
-                `http://localhost:5000/api/orders/${orderId}`,
+                `${API}/api/orders/${orderId}`,
                 config
             );
             setOrder(data);
@@ -37,7 +38,7 @@ export default function AdminOrderDetails() {
 
     const deliverHandler = async () => {
         try {
-            await axios.put(`http://localhost:5000/api/orders/${orderId}/deliver`, {}, config);
+            await axios.put(`${API}/api/orders/${orderId}/deliver`, {}, config);
             fetchOrder();
         } catch (error) {
             alert(error.response?.data?.message || error.message);
@@ -46,7 +47,7 @@ export default function AdminOrderDetails() {
 
     const payHandler = async () => {
         try {
-            await axios.put(`http://localhost:5000/api/orders/${orderId}/pay`, {}, config);
+            await axios.put(`${API}/api/orders/${orderId}/pay`, {}, config);
             fetchOrder();
         } catch (error) {
             alert(error.response?.data?.message || error.message);
@@ -132,7 +133,7 @@ export default function AdminOrderDetails() {
                                             <tr key={index} className="hover:bg-gray-50 transition">
                                                 <td className="px-8 py-5">
                                                     <div className="flex items-center">
-                                                        <img src={item.image} alt={item.name} className="w-12 h-12 object-cover rounded-md mr-4" />
+                                                        <img src={`${API}${item.image}`} alt={item.name} className="w-12 h-12 object-cover rounded-md mr-4" />
                                                         <span className="font-medium text-gray-800">{item.name}</span>
                                                     </div>
                                                 </td>

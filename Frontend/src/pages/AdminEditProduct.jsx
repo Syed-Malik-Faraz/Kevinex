@@ -17,6 +17,7 @@ export default function AdminEditProduct() {
     const [isFeatured, setIsFeatured] = useState(false);
     const [uploading, setUploading] = useState(false);
     const [loading, setLoading] = useState(true);
+    const API = import.meta.env.VITE_API_URL;
 
     const userInfo = JSON.parse(localStorage.getItem("userInfo"));
     const config = {
@@ -28,7 +29,7 @@ export default function AdminEditProduct() {
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const { data } = await axios.get(`http://localhost:5000/api/products/${productId}`);
+                const { data } = await axios.get(`${API}/api/products/${productId}`);
                 // Backend returns { product: { ... } } based on previous view_file
                 const product = data.product || data;
 
@@ -59,7 +60,7 @@ export default function AdminEditProduct() {
 
         try {
             const { data } = await axios.post(
-                "http://localhost:5000/api/upload",
+                `${API}/api/upload`,
                 formData,
                 {
                     headers: {
@@ -82,7 +83,7 @@ export default function AdminEditProduct() {
 
         try {
             await axios.put(
-                `http://localhost:5000/api/products/${productId}`,
+                `${API}/api/products/${productId}`,
                 {
                     name,
                     price,

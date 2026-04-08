@@ -15,6 +15,7 @@ export default function Home() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const API = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -23,7 +24,7 @@ export default function Home() {
         setError("");
 
         const { data } = await axios.get(
-          "http://localhost:5000/api/products?isFeatured=true"
+          `${API}/api/products?isFeatured=true`
         );
 
         setProducts(data.products);

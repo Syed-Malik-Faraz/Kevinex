@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ShoppingCart, Heart } from "lucide-react";
 
 export default function ProductCard({ product }) {
+  const API = import.meta.env.VITE_API_URL;
   const discountPrice = Math.round(product.price * 1.2);
 
   return (
@@ -22,7 +23,7 @@ export default function ProductCard({ product }) {
           className="flex items-center justify-center w-full h-full"
         >
           <img
-            src={`http://localhost:5000${product.image}`}
+            src={`${API}${product.image}`}
             alt={product.name}
             className="max-h-full max-w-full object-contain transition-transform duration-700 group-hover:scale-105"
           />

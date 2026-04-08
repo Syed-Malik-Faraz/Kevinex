@@ -14,6 +14,7 @@ export default function Contact() {
   });
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState({ type: "", message: "" });
+  const API = import.meta.env.VITE_API_URL;
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -25,7 +26,7 @@ export default function Contact() {
     setStatus({ type: "", message: "" });
 
     try {
-      await axios.post("http://localhost:5000/api/messages", formData);
+      await axios.post(`${API}/api/messages`, formData);
       setStatus({ type: "success", message: "Message Sent Successfully! We'll get back to you soon." });
       setFormData({ name: "", email: "", subject: "", message: "" });
     } catch (error) {

@@ -11,6 +11,7 @@ export default function Products() {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const API = import.meta.env.VITE_API_URL;
 
   // Filter States
   const [keyword, setKeyword] = useState("");
@@ -24,7 +25,7 @@ export default function Products() {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const { data } = await axios.get("http://localhost:5000/api/products/categories");
+        const { data } = await axios.get(`${API}/api/products/categories`);
         setCategories(data);
       } catch (err) {
         console.error("Failed to load categories", err);
@@ -45,7 +46,7 @@ export default function Products() {
           maxPrice: maxPrice,
         });
 
-        const { data } = await axios.get(`http://localhost:5000/api/products?${queryParams}`);
+        const { data } = await axios.get(`${API}/api/products?${queryParams}`);
         setProducts(data.products);
         setPages(data.pages);
         setPage(data.page);

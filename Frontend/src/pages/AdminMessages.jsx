@@ -9,6 +9,7 @@ export default function AdminMessages() {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const API = import.meta.env.VITE_API_URL;
 
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   const config = {
@@ -20,7 +21,7 @@ export default function AdminMessages() {
   const fetchMessages = async () => {
     try {
       setLoading(true);
-      const { data } = await axios.get("http://localhost:5000/api/messages", config);
+      const { data } = await axios.get(`${API}/api/messages`, config);
       setMessages(data);
       setError("");
     } catch (err) {
@@ -37,7 +38,7 @@ export default function AdminMessages() {
   const deleteHandler = async (id) => {
     if (window.confirm("Are you sure you want to delete this message?")) {
       try {
-        await axios.delete(`http://localhost:5000/api/messages/${id}`, config);
+        await axios.delete(`${API}/api/messages/${id}`, config);
         setMessages(messages.filter((m) => m._id !== id));
       } catch (err) {
         alert(err.response?.data?.message || "Delete failed");
@@ -47,7 +48,7 @@ export default function AdminMessages() {
 
   const markReadHandler = async (id) => {
     try {
-      await axios.put(`http://localhost:5000/api/messages/${id}/read`, {}, config);
+      await axios.put(`${API}/api/messages/${id}/read`, {}, config);
       setMessages(
         messages.map((m) => (m._id === id ? { ...m, isRead: true } : m))
       );

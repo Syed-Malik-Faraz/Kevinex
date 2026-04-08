@@ -12,6 +12,7 @@ export default function AdminAddProduct() {
   const [image, setImage] = useState("");
   const [isFeatured, setIsFeatured] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const API = import.meta.env.VITE_API_URL;
 
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   const config = {
@@ -30,7 +31,7 @@ export default function AdminAddProduct() {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/api/upload",
+        `${API}/api/upload`,
         formData,
         {
           headers: {
@@ -54,7 +55,7 @@ export default function AdminAddProduct() {
 
     try {
       await axios.post(
-        "http://localhost:5000/api/products",
+        `${API}/api/products`,
         {
           name,
           price,

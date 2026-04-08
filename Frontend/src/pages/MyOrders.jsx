@@ -9,6 +9,7 @@ export default function MyOrders() {
     const [loading, setLoading] = useState(true);
     const [userInfo, setUserInfo] = useState(null);
     const navigate = useNavigate();
+    const API = import.meta.env.VITE_API_URL;
 
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem("userInfo"));
@@ -25,7 +26,7 @@ export default function MyOrders() {
                         Authorization: `Bearer ${user.token}`,
                     },
                 };
-                const { data } = await axios.get("http://localhost:5000/api/orders/myorders", config);
+                const { data } = await axios.get(`${API}/api/orders/myorders`, config);
                 setOrders(data);
                 setLoading(false);
             } catch (error) {
@@ -108,7 +109,7 @@ export default function MyOrders() {
                                                 {order.orderItems.map((item, index) => (
                                                     <div key={index} className="flex gap-4">
                                                         <img
-                                                            src={`http://localhost:5000${item.image}`}
+                                                            src={`${API}${item.image}`}
                                                             alt={item.name}
                                                             className="w-20 h-20 object-cover rounded-lg border border-gray-100"
                                                         />

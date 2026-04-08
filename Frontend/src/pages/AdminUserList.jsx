@@ -7,6 +7,7 @@ export default function AdminUserList() {
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState("");
+    const API = import.meta.env.VITE_API_URL;
 
     const userInfo = JSON.parse(localStorage.getItem("userInfo"));
     const config = {
@@ -17,7 +18,7 @@ export default function AdminUserList() {
 
     const fetchUsers = async () => {
         try {
-            const { data } = await axios.get("http://localhost:5000/api/users", config);
+            const { data } = await axios.get(`${API}/api/users`, config);
             setUsers(data);
             setLoading(false);
         } catch (error) {
@@ -33,7 +34,7 @@ export default function AdminUserList() {
     const deleteHandler = async (id) => {
         if (window.confirm("Are you sure you want to delete this user?")) {
             try {
-                await axios.delete(`http://localhost:5000/api/users/${id}`, config);
+                await axios.delete(`${API}/api/users/${id}`, config);
                 fetchUsers();
                 alert("User removed successfully.");
             } catch (error) {
@@ -45,7 +46,7 @@ export default function AdminUserList() {
     const toggleAdminHandler = async (user) => {
         try {
             await axios.put(
-                `http://localhost:5000/api/users/${user._id}`,
+                `${API}/api/users/${user._id}`,
                 { isAdmin: !user.isAdmin },
                 config
             );

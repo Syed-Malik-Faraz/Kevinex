@@ -7,6 +7,7 @@ export default function Cart() {
   const [cartItems, setCartItems] = useState([]);
   const [userInfo, setUserInfo] = useState(null);
   const navigate = useNavigate();
+  const API = import.meta.env.VITE_API_URL;
 
   // Load cart and userInfo safely
   useEffect(() => {
@@ -134,7 +135,7 @@ export default function Cart() {
                       >
                         <div className="flex items-center gap-6">
                           <img
-                            src={`http://localhost:5000${item.image}`}
+                            src={`${API}${item.image}`}
                             alt={item.name}
                             className="w-24 h-24 object-cover rounded-xl shadow-sm"
                           />
