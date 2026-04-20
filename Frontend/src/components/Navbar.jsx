@@ -2,6 +2,7 @@
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import logo from "../assets/logo.jpeg";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,10 +29,9 @@ export default function Navbar() {
         {/* Logo */}
         <NavLink
           to="/home"
-          className="text-2xl font-bold tracking-wide bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent"
-          style={{ fontFamily: "'Great Vibes', cursive" }}
+          className="flex items-center"
         >
-          Kevinex
+          <img src={logo} alt="Kevinex Logo" className="h-10 w-auto object-contain" />
         </NavLink>
 
         {/* Desktop Menu */}
@@ -77,7 +77,7 @@ export default function Navbar() {
             </div>
           ) : (
             <div className="flex items-center space-x-4 ml-4 pl-4 border-l border-gray-200">
-              <NavLink to="/" className="text-gray-700 hover:text-indigo-600 transition">
+              <NavLink to="/login" className="text-gray-700 hover:text-indigo-600 transition">
                 Login
               </NavLink>
               <NavLink
@@ -152,7 +152,7 @@ export default function Navbar() {
             </>
           ) : (
             <>
-              <NavLink to="/" onClick={() => setIsOpen(false)} className="text-gray-700">
+              <NavLink to="/login" onClick={() => setIsOpen(false)} className="text-gray-700">
                 Login
               </NavLink>
               <NavLink

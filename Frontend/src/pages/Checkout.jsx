@@ -17,6 +17,7 @@ export default function Checkout() {
     postalCode: "",
     country: "India",
     phone: "",
+    secondaryPhone: "",
   });
 
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
@@ -31,7 +32,7 @@ export default function Checkout() {
     if (items.length === 0) {
       navigate("/cart");
     }
-  }, [navigate, userInfo]);
+  }, [navigate]); // Removed userInfo from dependencies
 
   const itemsPrice = cartItems.reduce(
     (acc, item) => acc + item.qty * item.price,
@@ -50,7 +51,7 @@ export default function Checkout() {
   const placeOrderHandler = async (e) => {
     e.preventDefault();
     if (!shippingAddress.address || !shippingAddress.city || !shippingAddress.postalCode || !shippingAddress.phone) {
-      alert("Please fill all shipping details");
+      alert("Please fill all required shipping details (Address, City, Pincode, and Phone)");
       return;
     }
 
@@ -76,6 +77,8 @@ export default function Checkout() {
           city: shippingAddress.city,
           postalCode: shippingAddress.postalCode,
           country: shippingAddress.country,
+          phone: shippingAddress.phone,
+          secondaryPhone: shippingAddress.secondaryPhone,
         },
         paymentMethod: "COD",
         totalPrice,
@@ -175,7 +178,7 @@ export default function Checkout() {
                       <input
                         type="tel"
                         name="phone"
-                        placeholder="+91 00000 00000"
+                        placeholder="Primary Phone"
                         required
                         value={shippingAddress.phone}
                         onChange={handleInputChange}
@@ -184,14 +187,18 @@ export default function Checkout() {
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <label className="text-xs font-bold text-gray-400 uppercase tracking-widest ml-1">Country</label>
-                    <input
-                      type="text"
-                      name="country"
-                      disabled
-                      value={shippingAddress.country}
-                      className="w-full px-6 py-4 rounded-2xl bg-gray-100 border border-gray-100 text-gray-500 cursor-not-allowed"
-                    />
+                    <label className="text-xs font-bold text-gray-400 uppercase tracking-widest ml-1">Secondary Phone (Optional)</label>
+                    <div className="relative">
+                      <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                      <input
+                        type="tel"
+                        name="secondaryPhone"
+                        placeholder="Secondary Phone"
+                        value={shippingAddress.secondaryPhone}
+                        onChange={handleInputChange}
+                        className="w-full pl-12 pr-6 py-4 rounded-2xl bg-gray-50 border border-gray-100 focus:border-indigo-500 focus:bg-white focus:outline-none transition duration-300"
+                      />
+                    </div>
                   </div>
                 </div>
               </form>

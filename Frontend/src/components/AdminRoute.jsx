@@ -6,7 +6,7 @@ const AdminRoute = ({ children }) => {
     return userInfo && userInfo.isAdmin ? (
         children
     ) : (
-        <Navigate to="/" replace />
+        <Navigate to="/login" replace />
     );
 };
 

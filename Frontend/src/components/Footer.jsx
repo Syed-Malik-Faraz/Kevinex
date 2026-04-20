@@ -1,5 +1,6 @@
 import { Instagram, Linkedin, Twitter } from "lucide-react";
 import { useNavigate } from "react-router-dom"
+import logo from "../assets/logo.jpeg";
 
 export default function Footer() {
 
@@ -11,12 +12,9 @@ export default function Footer() {
 
         {/* Brand Section */}
         <div>
-          <h2
-            className="text-4xl text-white mb-4"
-            style={{ fontFamily: "'Great Vibes', cursive" }}
-          >
-            Kevinex
-          </h2>
+          <div className="mb-6">
+            <img src={logo} alt="Kevinex Logo" className="h-12 w-auto object-contain  " />
+          </div>
           <p className="text-gray-400 text-sm leading-relaxed">
             Delivering quality household and lifestyle products across India.
             Trusted by thousands of happy customers.

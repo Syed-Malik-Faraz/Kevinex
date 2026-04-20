@@ -98,7 +98,7 @@ export default function Cart() {
                 <h1 className="text-2xl font-bold text-gray-800 mb-4">Your Cart is waiting</h1>
                 <p className="text-gray-500 mb-8">Please log in to view your items and continue shopping.</p>
                 <button
-                  onClick={() => navigate("/")}
+                  onClick={() => navigate("/login")}
                   className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 rounded-xl font-bold hover:shadow-lg transition duration-300 transform hover:-translate-y-0.5"
                 >
                   Log In to Continue

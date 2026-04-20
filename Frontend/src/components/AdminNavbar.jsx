@@ -1,5 +1,6 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { LayoutDashboard, Package, PlusCircle, LogOut, Eye, Users } from "lucide-react";
+import logo from "../assets/logo.jpeg";
 
 export default function AdminNavbar() {
     const navigate = useNavigate();
@@ -24,9 +25,10 @@ export default function AdminNavbar() {
                 <div className="flex items-center space-x-6">
                     <NavLink
                         to="/admin/dashboard"
-                        className="text-2xl font-bold tracking-tight bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent"
+                        className="flex items-center"
                     >
-                        Kevinex Admin
+                        <img src={logo} alt="Kevinex Admin" className="h-8 w-auto object-contain brightness-110 contrast-125" />
+                        <span className="ml-3 text-lg font-black tracking-widest text-white uppercase">Admin</span>
                     </NavLink>
                     <NavLink
                         to="/home"

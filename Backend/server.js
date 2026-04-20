@@ -22,11 +22,14 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Middleware
-app.use(cors());
-app.use(express.json());
 app.use(cors({
-  origin: "https://kevinex.vercel.app"
+  origin: [
+    "http://localhost:5173",            // local dev
+    "https://kevinex.vercel.app"        // production
+  ],
+  credentials: true
 }));
+app.use(express.json());
 
 // Static folders
 app.use("/images", express.static(path.join(__dirname, "/images")));

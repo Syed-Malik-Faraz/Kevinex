@@ -202,6 +202,13 @@ export default function AdminOrderDetails() {
                                 <p>{order.shippingAddress.address}</p>
                                 <p>{order.shippingAddress.city}, {order.shippingAddress.postalCode}</p>
                                 <p>{order.shippingAddress.country}</p>
+                                <div className="mt-4 pt-4 border-t border-gray-100">
+                                    <p className="text-xs font-bold text-gray-400 uppercase mb-1">Contact Numbers</p>
+                                    <p className="font-bold text-indigo-600 underline">{order.shippingAddress.phone}</p>
+                                    {order.shippingAddress.secondaryPhone && (
+                                        <p className="text-gray-500">{order.shippingAddress.secondaryPhone} (Secondary)</p>
+                                    )}
+                                </div>
                             </div>
                         </div>
 
