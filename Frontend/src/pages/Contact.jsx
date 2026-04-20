@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { motion, AnimatePresence } from "framer-motion";
 import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle } from "lucide-react";
+import { API_URL } from "../apiConfig";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -14,7 +15,7 @@ export default function Contact() {
   });
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState({ type: "", message: "" });
-  const API = import.meta.env.VITE_API_URL;
+  const API = API_URL;
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });

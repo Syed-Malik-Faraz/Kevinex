@@ -4,12 +4,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Mail, Trash2, Check, Clock, User, MessageSquare, ArrowLeft, RefreshCw } from "lucide-react";
 import { Link } from "react-router-dom";
 import AdminNavbar from "../components/AdminNavbar";
+import { API_URL } from "../apiConfig";
 
 export default function AdminMessages() {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const API = import.meta.env.VITE_API_URL;
+  const API = API_URL;
 
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   const config = {

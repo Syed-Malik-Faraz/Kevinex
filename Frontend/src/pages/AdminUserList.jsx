@@ -2,12 +2,13 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import AdminNavbar from "../components/AdminNavbar";
 import { Trash2, UserCheck, UserPlus, Shield, Mail, Calendar, Search } from "lucide-react";
+import { API_URL } from "../apiConfig";
 
 export default function AdminUserList() {
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState("");
-    const API = import.meta.env.VITE_API_URL;
+    const API = API_URL;
 
     const userInfo = JSON.parse(localStorage.getItem("userInfo"));
     const config = {

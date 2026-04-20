@@ -4,12 +4,13 @@ import { useNavigate, NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
 import bgImage from "../assets/Background2.jpeg";
+import { API_URL } from "../apiConfig";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const API = import.meta.env.VITE_API_URL;
+  const API = API_URL;
 
   const submitHandler = async (e) => {
     e.preventDefault();

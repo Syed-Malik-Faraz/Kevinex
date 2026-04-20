@@ -2,9 +2,10 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ShoppingCart, Heart } from "lucide-react";
+import { API_URL } from "../apiConfig";
 
 export default function ProductCard({ product }) {
-  const API = import.meta.env.VITE_API_URL;
+  const API = API_URL;
   const discountPrice = Math.round(product.price * 1.2);
 
   return (

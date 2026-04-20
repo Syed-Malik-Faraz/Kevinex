@@ -2,12 +2,13 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { API_URL } from "../apiConfig";
 
 export default function Cart() {
   const [cartItems, setCartItems] = useState([]);
   const [userInfo, setUserInfo] = useState(null);
   const navigate = useNavigate();
-  const API = import.meta.env.VITE_API_URL;
+  const API = API_URL;
 
   // Load cart and userInfo safely
   useEffect(() => {

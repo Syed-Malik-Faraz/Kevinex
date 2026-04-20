@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 import AdminNavbar from "../components/AdminNavbar";
+import { API_URL } from "../apiConfig";
 
 export default function AdminDashboard() {
     const [orders, setOrders] = useState([]);
@@ -10,7 +11,7 @@ export default function AdminDashboard() {
     const [loading, setLoading] = useState(true);
     const [page, setPage] = useState(1);
     const [pages, setPages] = useState(1);
-    const API = import.meta.env.VITE_API_URL;
+    const API = API_URL;
 
     const userInfo = JSON.parse(localStorage.getItem("userInfo"));
     const config = {

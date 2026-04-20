@@ -9,13 +9,13 @@ import Hero from "../components/Hero";
 import FeaturedGrid from "../components/FeaturedGrid"; // Changed from ProductGrid
 import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
+import { API_URL } from "../apiConfig";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const API = import.meta.env.VITE_API_URL;
+  const API = API_URL;
 
   useEffect(() => {
     const fetchProducts = async () => {

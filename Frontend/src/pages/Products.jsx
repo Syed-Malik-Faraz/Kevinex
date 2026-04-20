@@ -5,13 +5,14 @@ import Footer from "../components/Footer";
 import ProductCard from "../components/ProductCard";
 import { Search, Filter, ChevronLeft, ChevronRight, SlidersHorizontal, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { API_URL } from "../apiConfig";
 
 export default function Products() {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const API = import.meta.env.VITE_API_URL;
+  const API = API_URL;
 
   // Filter States
   const [keyword, setKeyword] = useState("");

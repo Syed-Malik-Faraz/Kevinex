@@ -3,13 +3,14 @@ import axios from "axios";
 import { Trash2, Edit } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import AdminNavbar from "../components/AdminNavbar";
+import { API_URL } from "../apiConfig";
 
 export default function AdminProductList() {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [page, setPage] = useState(1);
     const [pages, setPages] = useState(1);
-    const API = import.meta.env.VITE_API_URL;
+    const API = API_URL;
 
     const userInfo = JSON.parse(localStorage.getItem("userInfo"));
     const config = {

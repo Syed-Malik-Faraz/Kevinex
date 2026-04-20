@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import AdminNavbar from "../components/AdminNavbar";
+import { API_URL } from "../apiConfig";
 
 export default function AdminAddProduct() {
   const [name, setName] = useState("");
@@ -12,7 +13,7 @@ export default function AdminAddProduct() {
   const [image, setImage] = useState("");
   const [isFeatured, setIsFeatured] = useState(false);
   const [uploading, setUploading] = useState(false);
-  const API = import.meta.env.VITE_API_URL;
+  const API = API_URL;
 
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   const config = {

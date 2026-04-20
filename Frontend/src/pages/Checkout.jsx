@@ -5,12 +5,13 @@ import Footer from "../components/Footer";
 import { useNavigate, Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { MapPin, Phone, CreditCard, ChevronRight, Package, Truck, ShieldCheck } from "lucide-react";
+import { API_URL } from "../apiConfig";
 
 export default function Checkout() {
   const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(false);
-  const API = import.meta.env.VITE_API_URL;
+  const API = API_URL;
   const [shippingAddress, setShippingAddress] = useState({
     address: "",
     city: "",

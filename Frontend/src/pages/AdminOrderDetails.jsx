@@ -3,13 +3,14 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import AdminNavbar from "../components/AdminNavbar";
 import { ChevronLeft, CreditCard, Truck, User, Calendar, MapPin } from "lucide-react";
+import { API_URL } from "../apiConfig";
 
 export default function AdminOrderDetails() {
     const { id: orderId } = useParams();
     const navigate = useNavigate();
     const [order, setOrder] = useState(null);
     const [loading, setLoading] = useState(true);
-    const API = import.meta.env.VITE_API_URL;
+    const API = API_URL;
 
     const userInfo = JSON.parse(localStorage.getItem("userInfo"));
     const config = {

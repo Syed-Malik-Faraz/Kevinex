@@ -14,11 +14,12 @@ import {
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ProductCard from "../components/ProductCard";
+import { API_URL } from "../apiConfig";
 
 export default function SingleProduct() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const API = import.meta.env.VITE_API_URL;
+  const API = API_URL;
 
   const [product, setProduct] = useState(null);
   const [relatedProducts, setRelatedProducts] = useState([]);

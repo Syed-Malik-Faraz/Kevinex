@@ -3,13 +3,14 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { ShoppingBag, Package, Truck, CheckCircle, XCircle, ChevronRight, MapPin, Calendar, CreditCard } from "lucide-react";
+import { API_URL } from "../apiConfig";
 
 export default function MyOrders() {
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true);
     const [userInfo, setUserInfo] = useState(null);
     const navigate = useNavigate();
-    const API = import.meta.env.VITE_API_URL;
+    const API = API_URL;
 
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem("userInfo"));

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import AdminNavbar from "../components/AdminNavbar";
+import { API_URL } from "../apiConfig";
 
 export default function AdminEditProduct() {
     const { id: productId } = useParams();
@@ -17,7 +18,7 @@ export default function AdminEditProduct() {
     const [isFeatured, setIsFeatured] = useState(false);
     const [uploading, setUploading] = useState(false);
     const [loading, setLoading] = useState(true);
-    const API = import.meta.env.VITE_API_URL;
+    const API = API_URL;
 
     const userInfo = JSON.parse(localStorage.getItem("userInfo"));
     const config = {
