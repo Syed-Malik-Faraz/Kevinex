@@ -10,7 +10,7 @@ export default function Hero() {
   return (
     <section className="relative min-h-[90vh] flex items-center overflow-hidden pt-32 pb-20 px-6">
       {/* Background with Asset */}
-      <div 
+      <div
         className="absolute inset-0 z-0 opacity-10 grayscale-[0.5] scale-105"
         style={{
           backgroundImage: `url(${heroBg})`,
@@ -24,7 +24,7 @@ export default function Hero() {
       <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-[500px] h-[500px] bg-purple-100 rounded-full blur-[100px] opacity-30 mix-blend-screen"></div>
 
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16 relative z-10 w-full">
-        
+
         {/* Left Content */}
         <div className="flex-1 text-center lg:text-left">
           <motion.div
@@ -100,7 +100,7 @@ export default function Hero() {
           </div>
 
           {/* Floating UI Elements */}
-          <motion.div 
+          <motion.div
             animate={{ y: [0, -20, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             className="absolute -top-6 -right-6 lg:-right-12 bg-white p-6 rounded-3xl shadow-2xl z-20 border border-gray-50 hidden sm:block"
@@ -116,7 +116,7 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          <motion.div 
+          {/* <motion.div
             animate={{ y: [0, 20, 0] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
             className="absolute -bottom-10 -left-6 lg:-left-12 bg-white/80 backdrop-blur-xl p-8 rounded-[2rem] shadow-2xl z-20 border border-white/50 hidden md:block"
@@ -124,11 +124,13 @@ export default function Hero() {
             <div className="space-y-3">
               <p className="text-4xl font-black text-indigo-600">4.9/5</p>
               <div className="flex gap-1">
-                {[1,2,3,4,5].map(i => <div key={i} className="w-2 h-2 rounded-full bg-indigo-600"></div>)}
+                {[1, 2, 3, 4, 5].map(i => <div key={i} className="w-2 h-2 rounded-full bg-indigo-600"></div>)}
               </div>
               <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Customer Satisfaction</p>
             </div>
-          </motion.div>
+            
+          </motion.div> */}
+
         </motion.div>
 
       </div>
