@@ -27,7 +27,7 @@ export default function AdminNavbar() {
                         to="/admin/dashboard"
                         className="flex items-center"
                     >
-                        <img src={logo} alt="Kevinex Admin" className="h-8 w-auto object-contain brightness-110 contrast-125" />
+                        <img src={logo} alt="Kevinex Admin" className="h-8 w-auto object-cover brightness-110 contrast-125" />
                         <span className="ml-3 text-lg font-black tracking-widest text-white uppercase">Admin</span>
                     </NavLink>
                     <NavLink

@@ -80,7 +80,7 @@ export default function AdminProductList() {
                                 {products.map((product) => (
                                     <tr key={product._id} className="hover:bg-indigo-50/30 transition">
                                         <td className="px-8 py-5 font-bold text-gray-900">{product.name}</td>
-                                        <td className="px-8 py-5 font-medium text-gray-600">${product.price.toFixed(2)}</td>
+                                        <td className="px-8 py-5 font-medium text-gray-600">Rs. {product.price.toFixed(2)}</td>
                                         <td className="px-8 py-5 text-gray-600">{product.category}</td>
                                         <td className="px-8 py-5 text-gray-600">{product.brand}</td>
                                         <td className="px-8 py-5 text-right space-x-3">
