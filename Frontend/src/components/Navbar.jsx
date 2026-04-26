@@ -23,19 +23,19 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="fixed w-full bg-white/70 backdrop-blur-lg shadow-sm z-50">
+    <nav className="fixed w-full bg-blue-100/70 backdrop-blur-lg shadow-sm z-50">
       <div className="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
 
         {/* Logo */}
         <NavLink
           to="/home"
-          className="flex items-center"
+          className="flex items-center "
         >
-          <img src={logo} alt="Kevinex Logo" className="h-10 w-auto object-contain" />
+          <img src={logo} alt="Kevinex Logo" className="h-10 w-auto object-contain rounded-lg " />
         </NavLink>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center space-x-8 font-medium">
+        <div className="hidden md:flex items-center space-x-8 font-semibold">
           {navLinks.map((link) => (
             <NavLink
               key={link.name}

@@ -2,26 +2,67 @@
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { ChevronRight, Play, ShoppingBag, Stars } from "lucide-react";
-import heroBg from "../assets/Background10.jpeg";
+import squigglyTube from "../assets/squiggly_tube.png";
+import pyramid from "../assets/pyramid.png";
 
 export default function Hero() {
   const navigate = useNavigate();
 
   return (
-    <section className="relative min-h-[90vh] flex items-center overflow-hidden pt-32 pb-20 px-6">
-      {/* Background with Asset */}
-      <div
-        className="absolute inset-0 z-0 opacity-10 grayscale-[0.5] scale-105"
-        style={{
-          backgroundImage: `url(${heroBg})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      ></div>
+    <section className="relative min-h-screen flex items-center overflow-hidden pt-32 pb-20 px-6 bg-hero-dark bg-grain">
+      {/* Background Radial Highlight */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-indigo-600/20 rounded-full blur-[150px] opacity-60"></div>
+      </div>
 
-      {/* Modern Gradient Overlays */}
-      <div className="absolute top-0 right-0 -mr-20 -mt-20 w-[600px] h-[600px] bg-indigo-100 rounded-full blur-[120px] opacity-40 mix-blend-multiply animate-pulse"></div>
-      <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-[500px] h-[500px] bg-purple-100 rounded-full blur-[100px] opacity-30 mix-blend-screen"></div>
+      {/* Floating 3D Assets */}
+      <motion.div
+        animate={{ 
+          y: [0, -40, 0],
+          rotate: [0, 10, 0],
+          scale: [1, 1.05, 1]
+        }}
+        transition={{ 
+          duration: 6, 
+          repeat: Infinity, 
+          ease: "easeInOut" 
+        }}
+        className="absolute top-[20%] right-[10%] w-64 h-64 z-10 pointer-events-none hidden lg:block"
+        style={{
+          backgroundImage: `url(${squigglyTube})`,
+          backgroundSize: 'contain',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          mixBlendMode: 'screen',
+          filter: 'contrast(1.2) brightness(1.1) drop-shadow(0 0 30px rgba(79,70,229,0.4))',
+          WebkitMaskImage: 'radial-gradient(circle, black 40%, transparent 70%)',
+          maskImage: 'radial-gradient(circle, black 40%, transparent 70%)'
+        }}
+      />
+
+      <motion.div
+        animate={{ 
+          y: [0, 30, 0],
+          rotate: [0, -15, 0]
+        }}
+        transition={{ 
+          duration: 5, 
+          repeat: Infinity, 
+          ease: "easeInOut",
+          delay: 1
+        }}
+        className="absolute bottom-[15%] left-[5%] w-32 h-32 z-10 pointer-events-none hidden lg:block"
+        style={{
+          backgroundImage: `url(${pyramid})`,
+          backgroundSize: 'contain',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          mixBlendMode: 'screen',
+          filter: 'contrast(1.2) brightness(1.1) drop-shadow(0 0 20px rgba(79,70,229,0.3))',
+          WebkitMaskImage: 'radial-gradient(circle, black 40%, transparent 70%)',
+          maskImage: 'radial-gradient(circle, black 40%, transparent 70%)'
+        }}
+      />
 
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16 relative z-10 w-full">
 
@@ -31,20 +72,20 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-white/50 backdrop-blur-md border border-indigo-100 text-indigo-700 text-sm font-black mb-10 shadow-sm"
+            className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-indigo-500/10 backdrop-blur-md border border-indigo-500/20 text-[#359cea] text-sm font-black mb-10 shadow-lg shadow-indigo-500/5"
           >
-            <Stars className="w-4 h-4 text-indigo-500 animate-spin-slow" />
+            <Stars className="w-4 h-4 text-[#359cea] animate-pulse" />
             <span className="uppercase tracking-widest">New Collection {new Date().getFullYear()}</span>
           </motion.div>
 
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="text-6xl md:text-8xl font-black text-gray-900 leading-[0.9] mb-10 tracking-tighter"
+            className="text-6xl md:text-8xl font-black text-white leading-[0.9] mb-10 tracking-tighter"
           >
             Elevate Your <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-800 text-glow">
+            <span className="text-transparent bg-clip-text bg-[#359cea] text-glow">
               Daily Living.
             </span>
           </motion.h1>
@@ -53,9 +94,13 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-lg md:text-xl text-gray-500 mb-12 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-medium"
+            className="text-lg md:text-xl text-slate-400 mb-12 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-medium"
           >
-            Discover the harmony of minimalism and performance. Kevinex brings you curated essentials designed to transform your space into a sanctuary of elegance.
+            {/* Discover the harmony of minimalism and performance. Kevinex brings you curated essentials designed to transform your space into a sanctuary of elegance. */}
+          Kevinex Private Limited remains committed to
+consistent quality, operational reliability, and
+sustainable growth across all its present
+and future business categories.
           </motion.p>
 
           <motion.div
@@ -66,7 +111,7 @@ export default function Hero() {
           >
             <button
               onClick={() => navigate("/products")}
-              className="group flex items-center gap-4 bg-gray-900 text-white px-10 py-5 rounded-[2rem] font-black hover:bg-indigo-600 transition-all duration-500 shadow-2xl shadow-indigo-200/50 hover:-translate-y-1 active:scale-95"
+              className="group flex items-center gap-4 bg-white text-slate-900 px-10 py-5 rounded-[2rem] font-black hover:bg-indigo-400 hover:text-white transition-all duration-500 shadow-2xl shadow-indigo-500/20 hover:-translate-y-1 active:scale-95"
             >
               <ShoppingBag className="w-5 h-5 group-hover:rotate-12 transition-transform" />
               Explore Now
@@ -74,63 +119,56 @@ export default function Hero() {
             </button>
 
             <button
-              className="flex items-center gap-4 px-10 py-5 rounded-[2rem] font-bold text-gray-900 hover:bg-white hover:shadow-xl transition-all duration-500 group border-2 border-transparent hover:border-gray-50"
+              className="flex items-center gap-4 px-10 py-5 rounded-[2rem] font-bold text-slate-300 hover:text-white transition-all duration-500 group border-2 border-slate-800 hover:border-indigo-500/50"
             >
-              <div className="w-12 h-12 rounded-full border-2 border-gray-100 flex items-center justify-center bg-white group-hover:scale-110 transition-transform">
-                <Play className="w-5 h-5 fill-indigo-600 text-indigo-600 ml-1" />
+              <div className="w-12 h-12 rounded-full border-2 border-slate-800 flex items-center justify-center bg-slate-900 group-hover:scale-110 transition-transform group-hover:border-indigo-500/50">
+                <Play className="w-5 h-5 fill-indigo-400 text-indigo-400 ml-1" />
               </div>
               The story
             </button>
           </motion.div>
         </div>
 
-        {/* Right Image/Graphic Area with 3D Effect */}
+        {/* Right Graphic Area */}
         <motion.div
           initial={{ opacity: 0, x: 60, rotate: 5 }}
           animate={{ opacity: 1, x: 0, rotate: 0 }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="flex-1 relative group py-10"
+          className="flex-1 relative group py-10 hidden lg:flex justify-center items-center"
         >
-          <div className="relative z-10 rounded-[3rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)] border-[12px] border-white max-w-[500px] mx-auto transform transition-transform duration-700 group-hover:scale-[1.02] group-hover:-rotate-1">
-            <img
-              src="/heroimage.jpg"
-              alt="Kevinex Premium Product"
-              className="w-full h-auto object-cover grayscale-[0.2] hover:grayscale-0 transition-all duration-700"
-            />
-          </div>
-
-          {/* Floating UI Elements */}
-          <motion.div
-            animate={{ y: [0, -20, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -top-6 -right-6 lg:-right-12 bg-white p-6 rounded-3xl shadow-2xl z-20 border border-gray-50 hidden sm:block"
-          >
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-indigo-50 rounded-2xl flex items-center justify-center">
-                <Stars className="w-6 h-6 text-indigo-600" />
-              </div>
-              <div>
-                <p className="text-[10px] font-black uppercase tracking-widest text-gray-400">Premium</p>
-                <p className="text-sm font-black text-gray-900">Verified Quality</p>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* <motion.div
-            animate={{ y: [0, 20, 0] }}
-            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            className="absolute -bottom-10 -left-6 lg:-left-12 bg-white/80 backdrop-blur-xl p-8 rounded-[2rem] shadow-2xl z-20 border border-white/50 hidden md:block"
-          >
-            <div className="space-y-3">
-              <p className="text-4xl font-black text-indigo-600">4.9/5</p>
-              <div className="flex gap-1">
-                {[1, 2, 3, 4, 5].map(i => <div key={i} className="w-2 h-2 rounded-full bg-indigo-600"></div>)}
-              </div>
-              <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Customer Satisfaction</p>
-            </div>
+          <div className="relative w-full max-w-[500px] aspect-square">
+            {/* Animated Ring */}
+            <motion.div 
+              animate={{ rotate: 360 }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              className="absolute inset-0 rounded-full border-2 border-dashed border-indigo-500/20"
+            ></motion.div>
             
-          </motion.div> */}
+            <div className="absolute inset-4 rounded-full border border-indigo-500/10 backdrop-blur-sm bg-indigo-500/5 flex items-center justify-center overflow-hidden">
+               <img
+                src="/heroimage.jpg"
+                alt="Kevinex Premium Product"
+                className="w-full h-full object-cover opacity-80 mix-blend-luminosity hover:opacity-100 transition-opacity duration-700"
+              />
+            </div>
 
+            {/* Float Card */}
+            <motion.div
+              animate={{ y: [0, -20, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute -top-10 -right-4 bg-slate-900/80 backdrop-blur-xl p-6 rounded-3xl shadow-2xl z-20 border border-white/10"
+            >
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-indigo-500/20 rounded-2xl flex items-center justify-center border border-indigo-500/30">
+                  <Stars className="w-6 h-6 text-indigo-400" />
+                </div>
+                <div>
+                  <p className="text-[10px] font-black uppercase tracking-widest text-indigo-400">Premium</p>
+                  <p className="text-sm font-black text-white">Verified Quality</p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </motion.div>
 
       </div>
