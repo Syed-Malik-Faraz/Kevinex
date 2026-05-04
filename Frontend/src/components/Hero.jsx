@@ -111,7 +111,7 @@ and future business categories.
           >
             <button
               onClick={() => navigate("/products")}
-              className="group flex items-center gap-4 bg-white text-slate-900 px-10 py-5 rounded-[2rem] font-black hover:bg-indigo-400 hover:text-white transition-all duration-500 shadow-2xl shadow-indigo-500/20 hover:-translate-y-1 active:scale-95"
+              className="group flex items-center gap-4 bg-[#359cea] text-glow text-slate-900 px-10 py-5 rounded-[2rem] font-black hover:bg-indigo-700 hover:text-white transition-all duration-500 shadow-2xl shadow-indigo-500/20 hover:-translate-y-1 active:scale-95"
             >
               <ShoppingBag className="w-5 h-5 group-hover:rotate-12 transition-transform" />
               Explore Now

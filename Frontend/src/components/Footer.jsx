@@ -2,6 +2,9 @@ import { Instagram, Linkedin, Twitter } from "lucide-react";
 import { useNavigate } from "react-router-dom"
 import logo from "../assets/logo.jpeg";
 
+import footerlogo from "../assets/footer-logo.jpeg"
+
+
 export default function Footer() {
 
   const Navigate = useNavigate();
@@ -13,7 +16,7 @@ export default function Footer() {
         {/* Brand Section */}
         <div>
           <div className="mb-6">
-            <img src={logo} alt="Kevinex Logo" className="h-12 w-auto object-contain  " />
+            <img src={footerlogo} alt="Kevinex Logo" className="h-12 w-auto object-contain" />
           </div>
           <p className="text-gray-400 text-sm leading-relaxed">
             Delivering quality household and lifestyle products across India.

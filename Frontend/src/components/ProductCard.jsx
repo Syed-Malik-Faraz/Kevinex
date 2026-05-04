@@ -32,7 +32,7 @@ export default function ProductCard({ product }) {
 
         {/* Floating Buttons */}
         <div className="absolute top-6 right-6 flex flex-col gap-3 translate-x-10 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500">
-          
+
           <button className="w-11 h-11 bg-white rounded-full flex items-center justify-center text-gray-900 shadow-md hover:bg-gray-900 hover:text-white transition duration-300">
             <Heart className="w-5 h-5" />
           </button>

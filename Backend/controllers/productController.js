@@ -29,8 +29,8 @@ const getProducts = async (req, res) => {
 
   const category = req.query.category ? { category: req.query.category } : {};
 
-  const minPrice = req.query.minPrice ? { price: { $gte: Number(req.query.minPrice) } } : {};
-  const maxPrice = req.query.maxPrice ? { price: { $lte: Number(req.query.maxPrice) } } : {};
+  // isFeatured filter for Home page
+  const isFeatured = req.query.isFeatured === "true" ? { isFeatured: true } : {};
 
   // Combine price filters if both exist
   let priceFilter = {};
@@ -40,7 +40,7 @@ const getProducts = async (req, res) => {
     if (req.query.maxPrice) priceFilter.price.$lte = Number(req.query.maxPrice);
   }
 
-  const query = { ...keyword, ...category, ...priceFilter };
+  const query = { ...keyword, ...category, ...priceFilter, ...isFeatured };
 
   const count = await Product.countDocuments(query);
 
@@ -118,6 +118,10 @@ const updateProduct = async (req, res) => {
     product.brand = brand || product.brand;
     product.category = category || product.category;
     product.countInStock = countInStock || product.countInStock;
+    // Persist isFeatured — use explicit check so false is not skipped
+    if (req.body.isFeatured !== undefined) {
+      product.isFeatured = req.body.isFeatured;
+    }
 
     const updatedProduct = await product.save();
     res.json(updatedProduct);

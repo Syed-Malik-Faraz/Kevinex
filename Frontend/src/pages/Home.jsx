@@ -110,6 +110,9 @@ export default function Home() {
           </div>
         </section>
 
+{/* absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-indigo-600/20 rounded-full blur-[150px] opacity-60 */}
+
+
         {/* Featured Products Attraction */}
         <main className="bg-white">
           <div className="max-w-7xl mx-auto px-6 py-32">
@@ -152,7 +155,7 @@ export default function Home() {
                 >
                   <Link
                     to="/products"
-                    className="inline-flex items-center gap-4 text-gray-900 font-bold text-lg hover:text-indigo-600 transition-colors group"
+                    className="inline-flex items-center gap-4 text-gray-900 font-bold text-xl hover:text-indigo-600 transition-colors group"
                   >
                     View All Products
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
