@@ -27,7 +27,7 @@ export default function Hero() {
           repeat: Infinity, 
           ease: "easeInOut" 
         }}
-        className="absolute top-[20%] right-[10%] w-64 h-64 z-10 pointer-events-none hidden lg:block"
+        className="absolute top-[15%] right-[5%] lg:top-[20%] lg:right-[10%] w-32 h-32 lg:w-64 lg:h-64 z-10 pointer-events-none opacity-50 lg:opacity-100"
         style={{
           backgroundImage: `url(${squigglyTube})`,
           backgroundSize: 'contain',
@@ -51,7 +51,7 @@ export default function Hero() {
           ease: "easeInOut",
           delay: 1
         }}
-        className="absolute bottom-[15%] left-[5%] w-32 h-32 z-10 pointer-events-none hidden lg:block"
+        className="absolute bottom-[10%] left-[5%] lg:bottom-[15%] lg:left-[5%] w-20 h-20 lg:w-32 lg:h-32 z-10 pointer-events-none opacity-50 lg:opacity-100"
         style={{
           backgroundImage: `url(${pyramid})`,
           backgroundSize: 'contain',
@@ -82,7 +82,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="text-6xl md:text-8xl font-black text-white leading-[0.9] mb-10 tracking-tighter"
+            className="text-5xl md:text-8xl font-black text-white leading-[0.9] mb-10 tracking-tighter"
           >
             Elevate Your <br />
             <span className="text-transparent bg-clip-text bg-[#359cea] text-glow">
@@ -94,13 +94,12 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-lg md:text-xl text-slate-400 mb-12 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-medium"
+            className="text-base md:text-xl text-slate-400 mb-12 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-medium"
           >
-            {/* Discover the harmony of minimalism and performance. Kevinex brings you curated essentials designed to transform your space into a sanctuary of elegance. */}
           Kevinex Private Limited remains committed to
-consistent quality, operational reliability, and
-sustainable growth across all its present
-and future business categories.
+          consistent quality, operational reliability, and
+          sustainable growth across all its present
+          and future business categories.
           </motion.p>
 
           <motion.div
@@ -111,7 +110,7 @@ and future business categories.
           >
             <button
               onClick={() => navigate("/products")}
-              className="group flex items-center gap-4 bg-[#359cea] text-glow text-slate-900 px-10 py-5 rounded-[2rem] font-black hover:bg-indigo-700 hover:text-white transition-all duration-500 shadow-2xl shadow-indigo-500/20 hover:-translate-y-1 active:scale-95"
+              className="group flex items-center gap-4 bg-[#359cea] text-slate-900 px-10 py-5 rounded-[2rem] font-black hover:bg-indigo-700 hover:text-white transition-all duration-500 shadow-2xl shadow-indigo-500/20 hover:-translate-y-1 active:scale-95"
             >
               <ShoppingBag className="w-5 h-5 group-hover:rotate-12 transition-transform" />
               Explore Now
@@ -131,12 +130,12 @@ and future business categories.
 
         {/* Right Graphic Area */}
         <motion.div
-          initial={{ opacity: 0, x: 60, rotate: 5 }}
-          animate={{ opacity: 1, x: 0, rotate: 0 }}
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="flex-1 relative group py-10 hidden lg:flex justify-center items-center"
+          className="flex-1 relative group py-10 flex justify-center items-center w-full"
         >
-          <div className="relative w-full max-w-[500px] aspect-square">
+          <div className="relative w-full max-w-[320px] md:max-w-[500px] aspect-square">
             {/* Animated Ring */}
             <motion.div 
               animate={{ rotate: 360 }}
@@ -156,15 +155,15 @@ and future business categories.
             <motion.div
               animate={{ y: [0, -20, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -top-10 -right-4 bg-slate-900/80 backdrop-blur-xl p-6 rounded-3xl shadow-2xl z-20 border border-white/10"
+              className="absolute -top-4 -right-2 md:-top-10 md:-right-4 bg-slate-900/80 backdrop-blur-xl p-3 md:p-6 rounded-2xl md:rounded-3xl shadow-2xl z-20 border border-white/10"
             >
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-indigo-500/20 rounded-2xl flex items-center justify-center border border-indigo-500/30">
-                  <Stars className="w-6 h-6 text-indigo-400" />
+              <div className="flex items-center gap-2 md:gap-4">
+                <div className="w-8 h-8 md:w-12 md:h-12 bg-indigo-500/20 rounded-xl md:rounded-2xl flex items-center justify-center border border-indigo-500/30">
+                  <Stars className="w-4 h-4 md:w-6 md:h-6 text-indigo-400" />
                 </div>
                 <div>
-                  <p className="text-[10px] font-black uppercase tracking-widest text-indigo-400">Premium</p>
-                  <p className="text-sm font-black text-white">Verified Quality</p>
+                  <p className="text-[8px] md:text-[10px] font-black uppercase tracking-widest text-indigo-400">Premium</p>
+                  <p className="text-xs md:text-sm font-black text-white whitespace-nowrap">Verified Quality</p>
                 </div>
               </div>
             </motion.div>
