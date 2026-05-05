@@ -72,7 +72,7 @@ export default function Contact() {
                 </div>
 
                 <div className="space-y-8">
-                  <div className="flex items-start gap-4">
+                  {/* <div className="flex items-start gap-4">
                     <div className="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 text-blue-600">
                       <MapPin className="w-6 h-6" />
                     </div>
@@ -80,19 +80,19 @@ export default function Contact() {
                       <h4 className="font-bold text-gray-900 uppercase tracking-widest text-xs mb-1">Our Location</h4>
                       <p className="text-gray-500 font-medium">India</p>
                     </div>
-                  </div>
+                  </div> */}
 
                   <div className="flex items-start gap-4">
                     <div className="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 text-blue-600">
                       <Mail className="w-6 h-6" />
                     </div>
                     <div>
-                      <h4 className="font-bold text-gray-900 uppercase tracking-widest text-xs mb-1">Email Us</h4>
-                      <p className="text-gray-500 font-medium">support@kevinex.com</p>
+                      <h4 className="font-bold text-gray-900 uppercase tracking-widest text-xs mb-1">Contact Us</h4>
+                      <p className="text-gray-500 font-medium">care@kevinex.com</p>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4">
+                  {/* <div className="flex items-start gap-4">
                     <div className="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 text-blue-600">
                       <Phone className="w-6 h-6" />
                     </div>
@@ -100,7 +100,8 @@ export default function Contact() {
                       <h4 className="font-bold text-gray-900 uppercase tracking-widest text-xs mb-1">Call Us</h4>
                       <p className="text-gray-500 font-medium">+91 98765 43210</p>
                     </div>
-                  </div>
+                  </div> */}
+
                 </div>
               </div>
 

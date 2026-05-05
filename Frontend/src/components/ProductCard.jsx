@@ -24,7 +24,7 @@ export default function ProductCard({ product }) {
           className="flex items-center justify-center w-full h-full"
         >
           <img
-            src={`${API}${product.image}`}
+            src={product.image?.startsWith("http") ? product.image : `${API}${product.image}`}
             alt={product.name}
             className="max-h-full max-w-full object-contain transition-transform duration-700 group-hover:scale-105"
           />
@@ -74,9 +74,9 @@ export default function ProductCard({ product }) {
             <p className="text-lg font-bold text-gray-900">
               ₹{product.price}
             </p>
-            <p className="text-sm text-gray-400 line-through">
+            {/* <p className="text-sm text-gray-400 line-through">
               ₹{discountPrice}
-            </p>
+            </p> */}
           </div>
         </div>
       </div>

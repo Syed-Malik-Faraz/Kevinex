@@ -136,7 +136,7 @@ export default function Cart() {
                       >
                         <div className="flex items-center gap-6">
                           <img
-                            src={`${API}${item.image}`}
+                            src={item.image?.startsWith("http") ? item.image : `${API}${item.image}`}
                             alt={item.name}
                             className="w-24 h-24 object-cover rounded-xl shadow-sm"
                           />

@@ -10,6 +10,7 @@ export default function AdminProductList() {
     const [loading, setLoading] = useState(true);
     const [page, setPage] = useState(1);
     const [pages, setPages] = useState(1);
+    const navigate = useNavigate();
     const API = API_URL;
 
     const userInfo = JSON.parse(localStorage.getItem("userInfo"));
@@ -53,7 +54,7 @@ export default function AdminProductList() {
     return (
         <>
             <AdminNavbar />
-            <div className="pt-24 p-8 bg-gray-50 min-h-screen">
+            <div className="pt-28 p-8 bg-gray-50 min-h-screen">
                 <div className="flex justify-between items-center mb-8">
                     <h1 className="text-3xl font-extrabold text-gray-900">Manage Products</h1>
                     <button

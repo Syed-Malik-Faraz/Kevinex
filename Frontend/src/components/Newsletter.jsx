@@ -50,11 +50,11 @@ export default function Newsletter() {
                     </div>
                     <div>
                       <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Email us</p>
-                      <p className="text-lg font-semibold">support@kevinex.com</p>
+                      <p className="text-lg font-semibold">care@kevinex.com</p>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-6 group">
+                  {/* <div className="flex items-center gap-6 group">
                     <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-indigo-600 transition duration-300">
                       <Phone className="w-6 h-6 text-indigo-400 group-hover:text-white" />
                     </div>
@@ -62,9 +62,9 @@ export default function Newsletter() {
                       <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Call us</p>
                       <p className="text-lg font-semibold">+91 01234 56789</p>
                     </div>
-                  </div>
+                  </div> */}
 
-                  <div className="flex items-center gap-6 group">
+                  {/* <div className="flex items-center gap-6 group">
                     <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-indigo-600 transition duration-300">
                       <MapPin className="w-6 h-6 text-indigo-400 group-hover:text-white" />
                     </div>
@@ -72,7 +72,7 @@ export default function Newsletter() {
                       <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Visit us</p>
                       <p className="text-lg font-semibold">New Delhi, India</p>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </motion.div>
             </div>

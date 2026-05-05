@@ -5,7 +5,7 @@ import { protect, admin } from "../middleware/authMiddleware.js";
 router.post("/", protect, admin, upload.single("image"), (req, res) => {
   res.send({
     message: "Image uploaded successfully",
-    imagePath: `/${req.file.path}`,
+    imagePath: req.file.path, // req.file.path is the full Cloudinary URL
   });
 });
 

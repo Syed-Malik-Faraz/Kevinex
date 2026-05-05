@@ -252,7 +252,7 @@ export default function Checkout() {
                 {cartItems.map((item) => (
                   <div key={item._id} className="flex gap-4">
                     <img 
-                      src={`${API}${item.image}`} 
+                      src={item.image?.startsWith("http") ? item.image : `${API}${item.image}`} 
                       alt={item.name} 
                       className="w-16 h-16 object-cover rounded-xl bg-gray-50"
                     />

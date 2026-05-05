@@ -67,7 +67,7 @@ export default function AdminUserList() {
     return (
         <>
             <AdminNavbar />
-            <div className="pt-24 px-8 pb-12 bg-gray-50 min-h-screen">
+            <div className="pt-28 px-8 pb-12 bg-gray-50 min-h-screen">
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
                     <div>
                         <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight">User Management</h1>

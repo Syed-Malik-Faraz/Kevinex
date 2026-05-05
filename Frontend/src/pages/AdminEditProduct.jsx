@@ -14,7 +14,7 @@ export default function AdminEditProduct() {
     const [brand, setBrand] = useState("");
     const [category, setCategory] = useState("");
     const [countInStock, setCountInStock] = useState("");
-    const [image, setImage] = useState("");
+    const [images, setImages] = useState([]);
     const [isFeatured, setIsFeatured] = useState(false);
     const [uploading, setUploading] = useState(false);
     const [loading, setLoading] = useState(true);
@@ -40,7 +40,7 @@ export default function AdminEditProduct() {
                 setBrand(product.brand);
                 setCategory(product.category);
                 setCountInStock(product.countInStock);
-                setImage(product.image);
+                setImages(product.images || [product.image]);
                 setIsFeatured(product.isFeatured);
                 setLoading(false);
             } catch (error) {
@@ -71,7 +71,7 @@ export default function AdminEditProduct() {
                 }
             );
 
-            setImage(data.imagePath);
+            setImages((prev) => [...prev, data.imagePath]);
             setUploading(false);
         } catch (error) {
             console.error(error);
@@ -92,7 +92,8 @@ export default function AdminEditProduct() {
                     brand,
                     category,
                     countInStock,
-                    image,
+                    image: images[0],
+                    images,
                     isFeatured,
                 },
                 config
@@ -110,9 +111,12 @@ export default function AdminEditProduct() {
     return (
         <>
             <AdminNavbar />
-            <div className="pt-20 pb-10">
-                <div className="max-w-md mx-auto mt-10 bg-white p-6 shadow rounded">
-                    <h2 className="text-2xl font-bold mb-4">Edit Product</h2>
+            <div className="pt-28 pb-10 bg-gray-50 min-h-screen">
+                <div className="max-w-2xl mx-auto px-6">
+                    <div className="bg-white p-8 md:p-12 shadow-xl rounded-[2.5rem] border border-gray-100">
+                        <h2 className="text-3xl font-black text-gray-900 mb-8 underline decoration-indigo-600 decoration-8 underline-offset-8">
+                            Edit Product
+                        </h2>
 
                     <form onSubmit={submitHandler} className="space-y-4">
                         <div>
@@ -181,14 +185,33 @@ export default function AdminEditProduct() {
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-700">Image URL</label>
-                            <input
-                                type="text"
-                                className="w-full border p-2 rounded bg-gray-100"
-                                value={image}
-                                readOnly
-                            />
-                            <input type="file" className="mt-2 w-full" onChange={uploadFileHandler} />
+                            <label className="block text-sm font-bold text-gray-700 mb-2">Product Images (Gallery)</label>
+                            <div className="grid grid-cols-3 gap-4 mb-4">
+                                {images.map((img, index) => (
+                                    <div key={index} className="relative group aspect-square rounded-xl overflow-hidden bg-gray-100 border">
+                                        <img 
+                                            src={img.startsWith("http") ? img : `${API}${img}`} 
+                                            alt="preview" 
+                                            className="w-full h-full object-cover"
+                                        />
+                                        <button
+                                            type="button"
+                                            onClick={() => setImages(images.filter((_, i) => i !== index))}
+                                            className="absolute top-1 right-1 bg-red-500 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition shadow-lg"
+                                        >
+                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+                                            </svg>
+                                        </button>
+                                        {index === 0 && (
+                                            <div className="absolute bottom-0 left-0 right-0 bg-indigo-600 text-[8px] text-white text-center py-0.5 font-bold uppercase">
+                                                Main Image
+                                            </div>
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
+                            <input type="file" className="w-full" onChange={uploadFileHandler} disabled={uploading} />
                         </div>
 
                         <div className="flex items-center gap-2 py-4">
@@ -219,6 +242,7 @@ export default function AdminEditProduct() {
                     </form>
                 </div>
             </div>
-        </>
-    );
+        </div>
+    </>
+);
 }

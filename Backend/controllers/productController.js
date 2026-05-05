@@ -77,13 +77,17 @@ const getProductById = async (req, res) => {
 
 // CREATE product (Admin)
 const createProduct = async (req, res) => {
-  const { name, price, image, brand, category, countInStock, description } = req.body;
+  const { name, price, image, images, brand, category, countInStock, description } = req.body;
+  
+  // Set main image as the first one from the images array if provided
+  const mainImage = images && images.length > 0 ? images[0] : image;
 
   const product = new Product({
     name,
     price,
     user: req.user._id,
-    image,
+    image: mainImage,
+    images: images || [image],
     brand,
     category,
     countInStock,
@@ -103,6 +107,7 @@ const updateProduct = async (req, res) => {
     price,
     description,
     image,
+    images,
     brand,
     category,
     countInStock
@@ -114,7 +119,16 @@ const updateProduct = async (req, res) => {
     product.name = name || product.name;
     product.price = price || product.price;
     product.description = description || product.description;
-    product.image = image || product.image;
+    
+    // Update main image and images array
+    if (images && images.length > 0) {
+      product.images = images;
+      product.image = images[0]; // First image is main
+    } else if (image) {
+      product.image = image;
+      product.images = [image];
+    }
+
     product.brand = brand || product.brand;
     product.category = category || product.category;
     product.countInStock = countInStock || product.countInStock;

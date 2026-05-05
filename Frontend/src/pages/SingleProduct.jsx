@@ -8,6 +8,7 @@ import {
   MessageCircle, 
   CheckCircle, 
   ChevronRight,
+  ChevronLeft,
   TrendingUp,
   Award
 } from "lucide-react";
@@ -24,6 +25,7 @@ export default function SingleProduct() {
   const [product, setProduct] = useState(null);
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [qty, setQty] = useState(1);
+  const [activeImage, setActiveImage] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -41,6 +43,7 @@ export default function SingleProduct() {
         setLoading(true);
         const { data } = await axios.get(`${API}/api/products/${id}`);
         setProduct(data.product);
+        setActiveImage(0); // Reset to first image on load
 
         // Fetch related products
         const { data: relatedData } = await axios.get(`${API}/api/products/${id}/related`);
@@ -162,23 +165,74 @@ export default function SingleProduct() {
 
             {/* Product Section */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-20 mb-20">
-              {/* Product Image */}
+              {/* Product Image Carousel */}
               <motion.div 
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 className="relative group lg:sticky lg:top-32 h-fit"
               >
-                <div className="aspect-square rounded-3xl overflow-hidden bg-gray-50 flex items-center justify-center p-8 transition-all duration-700 hover:shadow-2xl">
-                  <motion.img
-                    layoutId={`product-${product._id}`}
-                    src={`${API}${product.image}`}
-                    alt={product.name}
-                    className="max-h-full max-w-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-700"
-                  />
+                <div className="aspect-square rounded-3xl overflow-hidden bg-gray-50 flex items-center justify-center p-8 transition-all duration-700 hover:shadow-2xl relative">
+                  <AnimatePresence mode="wait">
+                    <motion.img
+                      key={activeImage}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 1.1 }}
+                      transition={{ duration: 0.4 }}
+                      src={
+                        product.images && product.images.length > 0 
+                        ? (product.images[activeImage]?.startsWith("http") ? product.images[activeImage] : `${API}${product.images[activeImage]}`)
+                        : (product.image?.startsWith("http") ? product.image : `${API}${product.image}`)
+                      }
+                      alt={product.name}
+                      className="max-h-full max-w-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-700"
+                    />
+                  </AnimatePresence>
+
+                  {/* Navigation Arrows */}
+                  {product.images && product.images.length > 1 && (
+                    <>
+                      <button 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setActiveImage((prev) => (prev === 0 ? product.images.length - 1 : prev - 1));
+                        }}
+                        className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/80 backdrop-blur-md rounded-full flex items-center justify-center shadow-lg text-gray-800 opacity-0 group-hover:opacity-100 transition-all hover:bg-white active:scale-90"
+                      >
+                        <ChevronLeft size={24} />
+                      </button>
+                      <button 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setActiveImage((prev) => (prev === product.images.length - 1 ? 0 : prev + 1));
+                        }}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/80 backdrop-blur-md rounded-full flex items-center justify-center shadow-lg text-gray-800 opacity-0 group-hover:opacity-100 transition-all hover:bg-white active:scale-90"
+                      >
+                        <ChevronRight size={24} />
+                      </button>
+                    </>
+                  )}
                 </div>
+
+                {/* Thumbnail Dots */}
+                {product.images && product.images.length > 1 && (
+                  <div className="flex justify-center gap-3 mt-6">
+                    {product.images.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setActiveImage(index)}
+                        className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                          activeImage === index 
+                          ? "bg-indigo-600 w-8" 
+                          : "bg-gray-200 hover:bg-gray-400"
+                        }`}
+                      />
+                    ))}
+                  </div>
+                )}
                 
                 {/* Stats overlays */}
-                <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-2xl shadow-xl flex items-center gap-3 border border-gray-100">
+                <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-2xl shadow-xl flex items-center gap-3 border border-gray-100 z-10">
                   <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-green-600">
                     <TrendingUp className="w-5 h-5" />
                   </div>
@@ -241,7 +295,7 @@ export default function SingleProduct() {
                     <div className="flex items-center justify-between">
                       <span className="text-sm font-bold text-gray-900 uppercase tracking-widest">Availability</span>
                       <span className={`text-sm font-bold ${product.countInStock > 0 ? "text-green-600" : "text-red-500"}`}>
-                        {product.countInStock > 0 ? `In Stock (${product.countInStock} items)` : "Out of Stock"}
+                        {product.countInStock > 0 ? `In Stock (${product.countInStock} items)` : "Coming soon"}
                       </span>
                     </div>
                     <div className="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden">

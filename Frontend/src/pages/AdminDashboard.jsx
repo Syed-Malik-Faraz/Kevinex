@@ -78,7 +78,7 @@ export default function AdminDashboard() {
     return (
         <>
             <AdminNavbar />
-            <div className="pt-20 p-8 bg-gray-50 min-h-screen">
+            <div className="pt-28 p-8 bg-gray-50 min-h-screen">
                 <h1 className="text-3xl font-bold mb-8">Admin Dashboard</h1>
 
                 {/* Stats Cards */}
