@@ -47,7 +47,7 @@ const AboutUs = () => {
 
       {/* Image / Illustration */}
       <motion.img
-        src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=800&q=80"
+        src="/heroimage.jpg"
         alt="Kevinex Business"
         className="mt-12 rounded-xl shadow-xl w-full max-w-3xl"
         initial={{ scale: 0.9, opacity: 0 }}
