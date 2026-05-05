@@ -276,7 +276,7 @@ export default function SingleProduct() {
                   <p className="text-4xl font-black text-gray-900 flex items-baseline gap-2">
                     ₹{product.price.toLocaleString()}
                     <span className="text-sm text-gray-400 line-through font-medium uppercase tracking-tighter">
-                      ₹{(product.price * 1.2).toLocaleString()}
+                      {/* ₹{(product.price * 1.2).toLocaleString()} */}
                     </span>
                   </p>
                 </div>

@@ -49,7 +49,7 @@ const AboutUs = () => {
       <motion.img
         src="/heroimage.jpg"
         alt="Kevinex Business"
-        className="mt-12 rounded-xl shadow-xl w-full max-w-3xl"
+        className="mt-12 shadow-xl w-full max-w-3xl rounded-full"
         initial={{ scale: 0.9, opacity: 0 }}
         whileInView={{ scale: 1, opacity: 1 }}
         viewport={{ once: true }}
