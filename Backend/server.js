@@ -25,7 +25,9 @@ const __dirname = path.dirname(__filename);
 app.use(cors({
   origin: [
     "http://localhost:5173",            // local dev
-    "https://kevinex.vercel.app"        // production
+    "https://kevinex.vercel.app",        // sub domain production
+    "https://www.kevinex.com",           // main domain production
+    "https://kevinex.com"                // main domain production
   ],
   credentials: true
 }));
